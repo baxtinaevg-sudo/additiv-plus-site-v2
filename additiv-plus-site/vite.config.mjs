@@ -6,5 +6,5 @@ const __dirname = import.meta.dirname
 export default defineConfig({
   root: __dirname,
   plugins: [vue()],
-  base: process.env.NODE_ENV === 'production' ? '/special-adventure/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/additiv-plus-site-v2/' : '/',
 })
