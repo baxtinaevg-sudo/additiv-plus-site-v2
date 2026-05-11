@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — Аддитив Плюс</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg: #F4F6F9;
+            --surface: #FFFFFF;
+            --text: #1B2A3D;
+            --text-sec: #5A6B7D;
+            --text-muted: #8C99A8;
+            --accent: #6C3FCD;
+            --accent-light: #F0EAF8;
+            --accent-mid: #B8A0E3;
+            --border: #D1D9E0;
+            --border-light: #E8ECF0;
+            --danger: #8A4B2E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            font-size: 14px;
+        }
+
+        /* ─── COVER ─── */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface);
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        .cover-inner {
+            max-width: 560px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .cover-logo {
+            margin-bottom: 3rem;
+        }
+
+        .cover-logo img {
+            height: 64px;
+            width: auto;
+        }
+
+        .cover-line {
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            margin-bottom: 3rem;
+        }
+
+        .cover-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+
+        .cover-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.6rem;
+            font-weight: 400;
+            letter-spacing: 14px;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+        }
+
+        .cover-subtitle {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-sec);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 3.5rem;
+        }
+
+        .cover-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 2;
+        }
+
+        .cover-meta strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .cover-meta a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ─── CATALOG SECTION ─── */
+        .catalog-section {
+            background: var(--surface);
+            padding: 2.5rem 2.5rem 2rem;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        .section-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 0.5px;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ─── BRAND SUB-HEADERS ─── */
+        .brand-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        /* ─── TABLES ─── */
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-table th {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            padding: 0 0.5rem 0.6rem;
+            border-bottom: 2px solid var(--accent);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .product-table th:first-child { text-align: left; }
+
+        .product-table td {
+            padding: 0.7rem 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--text-sec);
+            vertical-align: top;
+        }
+
+        .product-table tr:last-child td { border-bottom: none; }
+
+        .p-name {
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+        }
+
+        .p-viscosity {
+            font-family: 'JetBrains Mono', monospace;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.78rem;
+        }
+
+        .p-desc {
+            color: var(--text-sec);
+            font-size: 0.8rem;
+        }
+
+        .p-apply {
+            color: var(--text);
+            font-size: 0.8rem;
+        }
+
+        .dosage {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: var(--accent);
+            border: 1px solid var(--accent-mid);
+            padding: 0.1rem 0.45rem;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+
+        /* ─── SECTION FOOTER ─── */
+        .section-footer {
+            margin-top: 2rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .section-footer span {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .disclaimer {
+            font-style: italic;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+        }
+
+        /* ─── CROSS-REF TABLE ─── */
+        .cross-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+        }
+
+        .cross-table th {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            padding: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .cross-table th:first-child {
+            text-align: left;
+            min-width: 140px;
+        }
+
+        .cross-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-sec);
+        }
+
+        .cross-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .cross-table .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .cross-table td:not(:first-child) {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cross-table tr:hover td {
+            background: var(--accent-light);
+        }
+
+        /* ─── BACK PAGE ─── */
+        .back-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--text);
+            color: var(--accent-mid);
+            padding: 4rem 2rem;
+        }
+
+        .back-inner {
+            max-width: 460px;
+            text-align: center;
+        }
+
+        .back-company {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-bottom: 2rem;
+        }
+
+        .back-line {
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin: 0 auto 2rem;
+        }
+
+        .back-details {
+            font-size: 0.82rem;
+            line-height: 2;
+        }
+
+        .back-details strong {
+            color: var(--accent-mid);
+            font-weight: 500;
+        }
+
+        .back-qr {
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .back-qr-text {
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .back-disclaimer {
+            font-size: 0.65rem;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        /* ─── PRINT ─── */
+        @page { size: A4; margin: 18mm 20mm; }
+
+        @media print {
+            body { background: white; }
+            .cover { min-height: auto; height: 100vh; page-break-after: always; }
+            .catalog-section { page-break-before: always; padding: 0; max-width: none; }
+            .product-table tr, .cross-table tr { page-break-inside: avoid; }
+            .back-page { min-height: auto; height: 100vh; page-break-before: always; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .cover-title, .cover-year { font-size: 1.8rem; }
+            .section-header { gap: 0.75rem; }
+            .section-title { font-size: 1.1rem; }
+            .product-table td, .product-table th { font-size: 0.72rem; padding: 0.4rem; }
+            .p-name { white-space: normal; }
+            .cross-table { font-size: 0.65rem; }
+        }
+    </style>
+    </style>
+</head>
+<body>
+<!-- ════════════════════════ ОБЛОЖКА ════════════════════════ -->
+<div class="cover" style="background:linear-gradient(160deg,#1B2A3D 0%,#2D1B4E 50%,#6C3FCD 100%);overflow:hidden;position:relative;">
+    <!-- Hexagonal molecular background -->
+    <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.08;">
+        <polygon points="400,50 450,75 450,125 400,150 350,125 350,75" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <polygon points="500,100 550,125 550,175 500,200 450,175 450,125" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <polygon points="300,120 350,145 350,195 300,220 250,195 250,145" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <polygon points="600,180 650,205 650,255 600,280 550,255 550,205" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <polygon points="200,250 250,275 250,325 200,350 150,325 150,275" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <polygon points="450,280 500,305 500,355 450,380 400,355 400,305" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <polygon points="650,320 700,345 700,395 650,420 600,395 600,345" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <polygon points="350,400 400,425 400,475 350,500 300,475 300,425" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <polygon points="150,400 200,425 200,475 150,500 100,475 100,425" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <polygon points="550,440 600,465 600,515 550,540 500,515 500,465" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+        <line x1="400" y1="150" x2="450" y2="175" stroke="#FFFFFF" stroke-width="0.5"/>
+        <line x1="450" y1="125" x2="500" y2="100" stroke="#FFFFFF" stroke-width="0.5"/>
+        <line x1="350" y1="195" x2="450" y2="305" stroke="#FFFFFF" stroke-width="0.5"/>
+        <line x1="500" y1="200" x2="600" y2="180" stroke="#FFFFFF" stroke-width="0.5"/>
+        <circle cx="400" cy="50" r="3" fill="#FFFFFF"/>
+        <circle cx="500" cy="100" r="3" fill="#FFFFFF"/>
+        <circle cx="300" cy="120" r="2" fill="#FFFFFF"/>
+        <circle cx="600" cy="180" r="3" fill="#FFFFFF"/>
+        <circle cx="200" cy="250" r="2" fill="#FFFFFF"/>
+        <circle cx="450" cy="280" r="3" fill="#FFFFFF"/>
+        <circle cx="650" cy="320" r="2" fill="#FFFFFF"/>
+        <circle cx="350" cy="400" r="3" fill="#FFFFFF"/>
+    </svg>
+    <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:4rem 2rem;">
+        <div style="margin-bottom:2.5rem;">
+            <img src="data:image/jpeg;base64,/9j/4RSlRXhpZgAATU0AKgAAAAgACgESAAMAAAABAAEAAAEaAAUAAAABAAAAhgEbAAUAAAABAAAAjgEoAAMAAAABAAIAAAExAAIAAAAhAAAAlgEyAAIAAAAUAAAAtwE7AAIAAAADSFAAAJydAAEAAAAGAAAAy+ocAAcAAAgMAAAA0YdpAAQAAAABAAAI4AAAEXwALcbAAAAnEAAtxsAAACcQQWRvYmUgUGhvdG9zaG9wIDIzLjIgKE1hY2ludG9zaCkAMjAyMzoxMDowOCAyMjo0MTozMgBIAFAAAAAc6gAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIkAMAAgAAABQAAAlGkAQAAgAAABQAAAlakpEAAgAAAAM0OAAAkpIAAgAAAAM0OAAAoAEAAwAAAAEAAQAAoAIABAAAAAEAAACAoAMABAAAAAEAAAAy6hwABwAACAwAAAluAAAAADIwMjM6MDg6MDIgMDA6MDM6MjcAMjAyMzowODowMiAwMDowMzoyNwAc6gAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYBAwADAAAAAQAG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HjhCSU0D8wAAAAAACQAAAAAAAAAAAQA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBB4AAAAAAAQAAAAAOEJJTQQaAAAAAAM7AAAABgAAAAAAAAAAAAAAMgAAAIAAAAADADEAMQA2AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAACAAAAAMgAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAbnVsbAAAAAIAAAAGYm91bmRzT2JqYwAAAAEAAAAAAABSY3QxAAAABAAAAABUb3AgbG9uZwAAAAAAAAAATGVmdGxvbmcAAAAAAAAAAEJ0b21sb25nAAAAMgAAAABSZ2h0bG9uZwAAAIAAAAAGc2xpY2VzVmxMcwAAAAFPYmpjAAAAAQAAAAAABXNsaWNlAAAAEgAAAAdzbGljZUlEbG9uZwAAAAAAAAAHZ3JvdXBJRGxvbmcAAAAAAAAABm9yaWdpbmVudW0AAAAMRVNsaWNlT3JpZ2luAAAADWF1dG9HZW5lcmF0ZWQAAAAAVHlwZWVudW0AAAAKRVNsaWNlVHlwZQAAAABJbWcgAAAABmJvdW5kc09iamMAAAABAAAAAAAAUmN0MQAAAAQAAAAAVG9wIGxvbmcAAAAAAAAAAExlZnRsb25nAAAAAAAAAABCdG9tbG9uZwAAADIAAAAAUmdodGxvbmcAAACAAAAAA3VybFRFWFQAAAABAAAAAAAAbnVsbFRFWFQAAAABAAAAAAAATXNnZVRFWFQAAAABAAAAAAAGYWx0VGFnVEVYVAAAAAEAAAAAAA5jZWxsVGV4dElzSFRNTGJvb2wBAAAACGNlbGxUZXh0VEVYVAAA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dGFEYXRlPSIyMDIzLTEwLTA4VDIyOjQxOjMyKzAzOjAwIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEiIHBob3Rvc2hvcDpEYXRlQ3JlYXRlZD0iMjAyMy0wOC0wMlQwMDowMzoyNy4wNDgiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODNmMzM0YWItNGQ5NS00NTAzLWJjMmItMmRjMzVlZGM4NTAyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjgzZjMzNGFiLTRkOTUtNDUwMy1iYzJiLTJkYzM1ZWRjODUwMiIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjgzZjMzNGFiLTRkOTUtNDUwMy1iYzJiLTJkYzM1ZWRjODUwMiI+IDxkYzpjcmVhdG9yPiA8cmRmOlNlcT4gPHJkZjpsaT5IUDwvcmRmOmxpPiA8L3JkZjpTZXE+IDwvZGM6Y3JlYXRvcj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ODNmMzM0YWItNGQ5NS00NTAzLWJjMmItMmRjMzVlZGM4NTAyIiBzdEV2dDp3aGVuPSIyMDIzLTEwLTA4VDIyOjQxOjMyKzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjMuMiAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg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" alt="Аддитив Плюс" style="height:72px;width:auto;filter:brightness(1.2);">
+        </div>
+        <div style="width:60px;height:2px;background:rgba(255,255,255,0.6);margin-bottom:3rem;"></div>
+        <div style="font-size:2.4rem;font-weight:300;letter-spacing:4px;color:rgba(255,255,255,0.9);margin-bottom:0.8rem;font-family:'Inter',sans-serif;">МЫ ТВОРИМ</div>
+        <div style="font-size:3rem;font-weight:700;letter-spacing:8px;text-transform:uppercase;color:#FFFFFF;margin-bottom:2.5rem;font-family:'Inter',sans-serif;">БУДУЩЕЕ</div>
+        <div style="width:40px;height:1px;background:#B8A0E3;margin-bottom:2.5rem;"></div>
+        <div style="font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:3px;text-transform:uppercase;font-family:'Inter',sans-serif;">Добавки для производства сухих строительных смесей</div>
+    </div>
+</div>
+<!-- ════════════════════════ 01 · ЭФИРЫ ЦЕЛЛЮЛОЗЫ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <path d="M20 4L34 12M20 4L6 12M20 36V28M20 36L6 28M34 12V28M6 12V28" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+            <circle cx="20" cy="20" r="4" fill="#6C3FCD" opacity="0.3"/>
+        </svg></span>
+        <h2 class="section-title">Эфиры целлюлозы</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF CE</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Вязкость, мПа·с</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF CE 23015</td>
+                <td class="p-viscosity">8 000 – 15 000</td>
+                <td class="p-apply">Клей С1Т, С2Е, С2ТЕ, C1S1, C2S1, C2S2, ССТИ</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 23708</td>
+                <td class="p-viscosity">30 000 – 40 000</td>
+                <td class="p-apply">Клей C0, C1, ССТИ</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 27205</td>
+                <td class="p-viscosity">30 000 – 40 000</td>
+                <td class="p-apply">ГЭМЦ. Модификация для цементных составов: клеи С1, С2, штукатурки</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 7820</td>
+                <td class="p-viscosity">35 000 – 45 000</td>
+                <td class="p-apply">Штукатурки и шпатлёвки. Повышенная трещиностойкость по сильно впитывающим основаниям</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 27155</td>
+                <td class="p-viscosity">30 000 – 40 000</td>
+                <td class="p-apply">ГЭМЦ. Модификация для гипсовых составов: штукатурки, шпатлёвки, клеи</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 30000</td>
+                <td class="p-viscosity">20 000 – 30 000</td>
+                <td class="p-apply">Клей С0, С1, кладочные растворы, шпатлёвки и штукатурки, декоративные штукатурки</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 65000</td>
+                <td class="p-viscosity">60 000 – 70 000</td>
+                <td class="p-apply">Клей С0, С1, кладочные растворы, шпатлёвки, штукатурки, клеи для теплоизоляции</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 400</td>
+                <td class="p-viscosity">600 – 1 000</td>
+                <td class="p-apply">Наливные полы, стяжки, гидроизоляция, ремонтные составы, ГЦВ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="brand-label">EXTRACELL</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Вязкость, мПа·с</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Extracell CE 70000</td>
+                <td class="p-viscosity">55 000 – 65 000</td>
+                <td class="p-apply">Клей С0, С1, кладочные растворы, шпатлёвки, штукатурки, клеи для теплоизоляции</td>
+            </tr>
+            <tr>
+                <td class="p-name">EXTRACELL 27541</td>
+                <td class="p-viscosity">—</td>
+                <td class="p-apply">—</td>
+            </tr>
+            <tr>
+                <td class="p-name">EXTRACELL 75503</td>
+                <td class="p-viscosity">—</td>
+                <td class="p-apply">—</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 02 · РЕДИСПЕРГИРУЕМЫЕ ПОРОШКИ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="6" width="20" height="28" rx="2" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="17" cy="15" r="2.5" fill="#6C3FCD" opacity="0.3"/>
+            <circle cx="24" cy="15" r="2.5" fill="#6C3FCD" opacity="0.3"/>
+            <circle cx="17" cy="23" r="2.5" fill="#6C3FCD" opacity="0.3"/>
+            <circle cx="24" cy="23" r="2.5" fill="#6C3FCD" opacity="0.3"/>
+            <line x1="14" y1="30" x2="26" y2="30" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+        </svg></span>
+        <h2 class="section-title">Редиспергируемые порошки</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF PE</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Тип сополимера</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF PE 5044 S</td>
+                <td class="p-desc">Универсальный мягкий</td>
+                <td class="p-apply">Клей С1/С2, ремонтные растворы, шпатлёвки, штукатурки, СФТК</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF PE 5010 S</td>
+                <td class="p-desc">Универсальный жёсткий</td>
+                <td class="p-apply">Клей С1/С2, шпатлёвки, саморастекающиеся массы, затирки, штукатурки</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF PE 4115 S</td>
+                <td class="p-desc">Универсальный жёсткий</td>
+                <td class="p-apply">Клей С1/С2, полимерные шпатлёвки, штукатурки, ремонтные растворы</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF PE 4121 S</td>
+                <td class="p-desc">Полуэластичный</td>
+                <td class="p-apply">Шпатлёвки, декоративные штукатурки, клей С1/С2, СФТК</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF PE 5549 H</td>
+                <td class="p-desc">Гидрофобный</td>
+                <td class="p-apply">Теплоизоляционные штукатурки, гидроизоляция, затирки, декоративные штукатурки, фасадные шпатлёвки</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 03 · РЕОЛОГИЧЕСКИЕ ДОБАВКИ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 20 Q13 10 20 20 Q27 30 34 20" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="6" cy="20" r="2" fill="#6C3FCD" opacity="0.5"/>
+            <circle cx="20" cy="20" r="2" fill="#6C3FCD" opacity="0.5"/>
+            <circle cx="34" cy="20" r="2" fill="#6C3FCD" opacity="0.5"/>
+        </svg></span>
+        <h2 class="section-title">Реологические добавки и стабилизаторы</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">FORBOCRETE K · Загустители</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Дозировка</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Forbocrete K 55</td>
+                <td class="p-desc">Модифицированный анионный акриламид</td>
+                <td><span class="dosage">0.01–0.03 %</span></td>
+                <td class="p-apply">Плиточные клеи, шпатлёвки</td>
+            </tr>
+            <tr>
+                <td class="p-name">Forbocrete K 25</td>
+                <td class="p-desc">Повышенная скорость диспергирования</td>
+                <td><span class="dosage">0.01–0.10 %</span></td>
+                <td class="p-apply">Плиточные клеи, шпатлёвки, штукатурки, в т.ч. механизированного нанесения</td>
+            </tr>
+            <tr>
+                <td class="p-name">Forbocrete S 010</td>
+                <td class="p-desc">Загуститель для высокоподвижных систем. Высокая тиксотропность</td>
+                <td>—</td>
+                <td class="p-apply">Магнезиальные полы, самоуплотняющиеся бетоны (СУБ), наливные полы</td>
+            </tr>
+            <tr>
+                <td class="p-name">Forbocrete K 2000</td>
+                <td class="p-desc">Сополимер акриламида, мелкодисперсный порошок</td>
+                <td><span class="dosage">0.002–0.01 %</span></td>
+                <td class="p-apply">Клеи, цементные растворы, гипсовые штукатурки машинного нанесения</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF DG / DG-F</td>
+                <td class="p-desc">Дьютановая камедь концентрированная</td>
+                <td>—</td>
+                <td class="p-apply">Загущение сухих строительных смесей</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="brand-label">FORBOCRETE S · Стабилизаторы</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Forbocrete K 252</td>
+                <td class="p-desc">Комплексный стабилизатор: полимеры + ПАВ + минеральные глины. Тиксотропные свойства, улучшает прокачиваемость</td>
+                <td class="p-apply">Штукатурки, шпатлёвки; прокачиваемость на штукатурных станциях</td>
+            </tr>
+            <tr>
+                <td class="p-name">Forbocrete S 011</td>
+                <td class="p-desc">Комплексный стабилизатор. Предотвращение расслаивания и седиментации</td>
+                <td class="p-apply">Наливные полы (SLU), СУБ, печатный бетон, инъекционные растворы, огнеупоры</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 04 · СУПЕРПЛАСТИФИКАТОРЫ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6C20 6 10 18 10 24C10 29.5 14.5 34 20 34C25.5 34 30 29.5 30 24C30 18 20 6 20 6Z" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <path d="M15 26C15 26 17 22 20 22C23 22 25 26 25 26" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+        </svg></span>
+        <h2 class="section-title">Суперпластификаторы</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF SU</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF SU 008</td>
+                <td class="p-desc">Поликарбоксилатный. Поддержание постоянства подвижности. Термостабильность до 100 °C</td>
+                <td class="p-apply">Универсальный</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF SU 88</td>
+                <td class="p-desc">Поликарбоксилатный. Для систем на комбинированном вяжущем и ГЦПВ. Термостабильность до 100 °C</td>
+                <td class="p-apply">Системы на комбинированном вяжущем и ГЦПВ</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF SU 90</td>
+                <td class="p-desc">Поликарбоксилатный. Для систем на комбинированном вяжущем и ГЦПВ. Термостабильность до 100 °C</td>
+                <td class="p-apply">Системы на комбинированном вяжущем и ГЦПВ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 05 · ВОЗДУХОВОВЛЕКАЮЩИЕ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="5" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <circle cx="26" cy="14" r="4" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <circle cx="20" cy="26" r="6" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <circle cx="10" cy="26" r="2.5" fill="#6C3FCD" opacity="0.2"/>
+            <circle cx="31" cy="24" r="2" fill="#6C3FCD" opacity="0.2"/>
+        </svg></span>
+        <h2 class="section-title">Воздухововлекающие добавки</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">REGOPOR</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Regopor LP 50</td>
+                <td class="p-desc" rowspan="3">Смесь анионного и неионогенного ПАВ. Разнокалиберная пористость растворного камня. Стабильные поры разного диаметра — максимальный выход раствора</td>
+                <td class="p-apply" rowspan="3">Цементные, гипсовые, известковые составы. Уменьшение плотности, получение максимального выхода раствора</td>
+            </tr>
+            <tr>
+                <td class="p-name">Regopor LP 51</td>
+            </tr>
+            <tr>
+                <td class="p-name">Regopor LP 52</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 06 · УСКОРЯЮЩИЕ И ЗАМЕДЛЯЮЩИЕ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="14" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <line x1="20" y1="20" x2="20" y2="10" stroke="#6C3FCD" stroke-width="1.5"/>
+            <line x1="20" y1="20" x2="28" y2="20" stroke="#6C3FCD" stroke-width="1"/>
+            <circle cx="20" cy="20" r="1.5" fill="#6C3FCD"/>
+        </svg></span>
+        <h2 class="section-title">Ускоряющие и замедляющие добавки</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Тип</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Laolin 1</td>
+                <td class="p-desc">Модификатор</td>
+                <td class="p-desc">Модификатор схватывания и твердения гипса</td>
+                <td class="p-apply">Снижение трещинообразования по пористым основаниям (пено- и газобетон, газосиликатные блоки)</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF A 030</td>
+                <td class="p-desc">Ускоритель</td>
+                <td class="p-desc">Ускоритель твердения цементных систем</td>
+                <td class="p-apply">Ремонтные составы, контактирующие с металлической арматурой</td>
+            </tr>
+            <tr>
+                <td class="p-name">Карбонат лития</td>
+                <td class="p-desc">Ускоритель</td>
+                <td class="p-desc">Ускоритель схватывания</td>
+                <td class="p-apply">Универсальный</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF Retard 10</td>
+                <td class="p-desc">Замедлитель</td>
+                <td class="p-desc">Тонкомолотый. Антислеживающие добавки на основе фруктовых кислот</td>
+                <td class="p-apply">Замедление схватывания гипсовых систем</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 07 · ПРОТИВОУСАДОЧНЫЕ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="8" y1="20" x2="16" y2="20" stroke="#6C3FCD" stroke-width="1.5"/>
+            <line x1="24" y1="20" x2="32" y2="20" stroke="#6C3FCD" stroke-width="1.5"/>
+            <path d="M16 14V26" stroke="#6C3FCD" stroke-width="1.5"/>
+            <path d="M24 14V26" stroke="#6C3FCD" stroke-width="1.5"/>
+            <path d="M16 14L20 17L24 14" stroke="#6C3FCD" stroke-width="1" opacity="0.5"/>
+            <path d="M16 26L20 23L24 26" stroke="#6C3FCD" stroke-width="1" opacity="0.5"/>
+        </svg></span>
+        <h2 class="section-title">Противоусадочные добавки</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">REOBOND</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Reobond NPG 100</td>
+                <td class="p-desc">Порошковая противоусадочная добавка. Уменьшение усадки при высыхании, снижение капиллярных напряжений, повышение трещиностойкости, уменьшение диффузии хлорид-ионов</td>
+                <td class="p-apply">Все виды ССС. Не ухудшает удобоукладываемость</td>
+            </tr>
+            <tr>
+                <td class="p-name">Reobond CSA 20</td>
+                <td class="p-desc">Порошковая противоусадочная добавка. Компенсация усадки портландцементов. Ускорение ранних сроков схватывания</td>
+                <td class="p-apply">Торкрет-бетоны, тампонажные бетоны, безусадочные смеси (наливные полы, промышленные полы, ремонтные составы)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 08 · ПЕНОГАСИТЕЛИ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="18" r="8" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <line x1="14" y1="24" x2="26" y2="12" stroke="#6C3FCD" stroke-width="1.5"/>
+        </svg></span>
+        <h2 class="section-title">Пеногасители</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF DF</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF DF 911</td>
+                <td class="p-desc">Порошковый пеногаситель универсальный</td>
+                <td class="p-apply">Самовыравнивающиеся полы, затирки, ремонтные растворы, шпатлёвки</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 09 · ЭФИРЫ КРАХМАЛА ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="14" r="4" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="13" cy="26" r="4" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="27" cy="26" r="4" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <line x1="20" y1="18" x2="13" y2="22" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+            <line x1="20" y1="18" x2="27" y2="22" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+        </svg></span>
+        <h2 class="section-title">Эфиры крахмала</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF SE</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF SE 30</td>
+                <td class="p-desc">Эфир крахмала универсальный</td>
+                <td class="p-apply">Плиточные клеи, цементные и гипсовые штукатурки</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 10 · ДИСПЕРГАТОРЫ / ПАВ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="28" cy="12" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="12" cy="28" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="28" cy="28" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="20" cy="20" r="3" fill="#6C3FCD" opacity="0.6"/>
+            <line x1="20" y1="20" x2="12" y2="12" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+            <line x1="20" y1="20" x2="28" y2="12" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+            <line x1="20" y1="20" x2="12" y2="28" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+            <line x1="20" y1="20" x2="28" y2="28" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+        </svg></span>
+        <h2 class="section-title">Диспергаторы / ПАВ</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF Disp</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF Disp 50</td>
+                <td class="p-desc">Диспергатор, ПАВ</td>
+                <td class="p-apply">Улучшение смачиваемости, снижение липкости к инструменту, повышение эластичности, повышение морозостойкости</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 11 · ПОДБОР ПО ОБЛАСТИ ПРИМЕНЕНИЯ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="12" height="12" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <rect x="22" y="6" width="12" height="12" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <rect x="6" y="22" width="12" height="12" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <rect x="22" y="22" width="12" height="12" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <rect x="9" y="9" width="6" height="6" fill="#6C3FCD" opacity="0.2"/>
+            <rect x="25" y="9" width="6" height="6" fill="#6C3FCD" opacity="0.2"/>
+            <rect x="9" y="25" width="6" height="6" fill="#6C3FCD" opacity="0.2"/>
+        </svg></span>
+        <h2 class="section-title">Подбор по области применения</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="cross-table">
+        <thead>
+            <tr>
+                <th>Продукт</th>
+                <th>Штукатурки</th>
+                <th>Шпатлёвки</th>
+                <th>Клеи плит.</th>
+                <th>Наливные полы</th>
+                <th>Гидроизоляция</th>
+                <th>Ремонтные</th>
+                <th>СФТК</th>
+                <th>Машин. нанес.</th>
+                <th>ГЦПВ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>MAPF CE 23015</td>
+                <td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 23708</td>
+                <td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 27205</td>
+                <td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 7820</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 27155</td>
+                <td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 30000</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 65000</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 400</td>
+                <td></td><td></td><td></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td><span class="dot"></span></td>
+            </tr>
+            <tr>
+                <td>Extracell CE 70000</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 5044 S</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 5010 S</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 4115 S</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 4121 S</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 5549 H</td>
+                <td><span class="dot"></span></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete K 55</td>
+                <td></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete K 25</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete K 252</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete S 010</td>
+                <td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete S 011</td>
+                <td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete K 2000</td>
+                <td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF SE 30</td>
+                <td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Laolin 1</td>
+                <td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF A 030</td>
+                <td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF DF 911</td>
+                <td></td><td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Reobond CSA 20</td>
+                <td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF SU 88</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td>
+            </tr>
+            <tr>
+                <td>MAPF SU 90</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой. Перечень областей применения носит рекомендательный характер.</p>
+</section>
+
+<!-- ════════════════════════ ОБРАТНАЯ СТРАНИЦА ════════════════════════ -->
+<div class="back-page">
+    <div class="back-inner">
+        <div class="back-company">ООО «АДДИТИВ ПЛЮС»</div>
+        <div class="back-line"></div>
+        <div class="back-details">
+            <strong>ИНН</strong> 5036165686 &nbsp;·&nbsp; <strong>ОГРН</strong> 1175074003367<br>
+            117405, Москва, ул. Дорожная, д. 60А, стр. 1<br><br>
+            <strong>Тел.</strong> +7 903 132-09-20<br>
+            <strong>E-mail</strong> info@additivplus.ru<br>
+            <strong>Web</strong> additivplus.ru
+        </div>
+        <div class="back-qr">
+            <div class="back-qr-text">QR-код для сайта</div>
+        </div>
+        <p class="back-disclaimer">Настоящее предложение не является офертой. Все характеристики указаны на основании каталога «Ассортимент 2026» ООО «АДДИТИВ ПЛЮС».</p>
+    </div>
+</div>
+
+</body>
+</html></task_progress>
+</write_to_file>
+</body>
+</html>

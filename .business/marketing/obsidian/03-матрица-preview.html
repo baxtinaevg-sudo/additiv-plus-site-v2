@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><title>Матрица конкурентов v2</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0f1419;color:#e0e0e0;padding:24px}
+h1{color:#58a6ff;margin-bottom:4px;font-size:1.4em}
+.sub{color:#8b949e;margin-bottom:20px;font-size:.85em}
+.f{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.f button{padding:5px 14px;border:1px solid #30363d;border-radius:16px;background:#21262d;color:#c9d1d9;cursor:pointer;font-size:.8em}
+.f button:hover{border-color:#58a6ff}
+.f button.on{background:#1f6feb;border-color:#1f6feb;color:#fff}
+.sts{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.s{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px 16px}
+.sl{color:#8b949e;font-size:.7em;text-transform:uppercase}
+.sv{font-size:1.3em;font-weight:700}
+.sec{margin-bottom:28px}
+.sec h2{font-size:1em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #30363d}
+.tg{font-size:.7em;padding:2px 8px;border-radius:10px;margin-left:8px}
+.tp{background:#1f6feb33;color:#58a6ff}
+.tt{background:#3fb95033;color:#3fb950}
+table{width:100%;border-collapse:collapse;font-size:.8em}
+th{background:#161b22;color:#8b949e;padding:8px 10px;text-align:left;font-weight:600;text-transform:uppercase;font-size:.7em;position:sticky;top:0}
+td{padding:6px 10px;border-bottom:1px solid #21262d}
+tr:hover{background:#161b22}
+.bm{background:#f85149;color:#fff;padding:1px 6px;border-radius:8px;font-size:.7em}
+details{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px 14px;margin-top:12px}
+summary{cursor:pointer;font-size:.85em}
+</style></head><body>
+<h1>Матрица конкурентов v2</h1>
+<p class="sub">Производители vs Торговые | 4 направления | 49 конкурентов</p>
+<div class="sts">
+<div class="s"><div class="sl">Всего</div><div class="sv" style="color:#58a6ff">49</div></div>
+<div class="s"><div class="sl">Производители</div><div class="sv" style="color:#58a6ff">30</div></div>
+<div class="s"><div class="sl">Торговые</div><div class="sv" style="color:#3fb950">19</div></div>
+<div class="s"><div class="sl">Мультиотраслевых</div><div class="sv" style="color:#d29922">4</div></div>
+</div>
+<div class="f">
+<button class="on" onclick="fl(this,'all')">Все</button>
+<button onclick="fl(this,'prod')">Производители</button>
+<button onclick="fl(this,'trade')">Торговые</button>
+<button onclick="fl(this,'sss')">ССС</button>
+<button onclick="fl(this,'lkm')">ЛКМ</button>
+<button onclick="fl(this,'plastics')">Пластмассы</button>
+<button onclick="fl(this,'rubber')">Каучук</button>
+</div>
+<div class="sec" id="sp">
+<h2>Производители <span class="tg tp">30</span></h2>
+<table>
+<tr><th>#</th><th>Компания</th><th>ССС</th><th>ЛКМ</th><th>Пласт.</th><th>Кауч.</th><th>M</th></tr>
+<tr data-t="prod" data-d="sss rubber"><td>1</td><td><b>ХИМСТАБ</b></td><td>✅</td><td></td><td></td><td>✅</td><td><span class="bm">M</span></td></tr>
+<tr data-t="prod" data-d="plastics rubber"><td>2</td><td><b>СИБУР</b></td><td></td><td></td><td>✅</td><td>✅</td><td><span class="bm">M</span></td></tr>
+<tr data-t="prod" data-d="sss"><td>3</td><td>Пигмент-КРАТА</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="sss"><td>4</td><td>Полипласт</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="sss"><td>5</td><td>Кубань-Полимер</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="sss"><td>6</td><td>Химпром Групп</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="sss"><td>7</td><td>НД-Техник</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="sss"><td>8</td><td>БИПОЛЬ</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="sss"><td>9</td><td>СТРОЙМОСТ</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="sss"><td>10</td><td>SAZI Group</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="sss"><td>11</td><td>CEMMIX</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="lkm"><td>12</td><td>АЗОЛ</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="lkm"><td>13</td><td>Роспласт</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="lkm"><td>14</td><td>Goodhim</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="lkm"><td>15</td><td>АРДмикс</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="lkm"><td>16</td><td>Хемикс</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="lkm"><td>17</td><td>Бентакс</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="lkm"><td>18</td><td>Химтехнология</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="lkm"><td>19</td><td>КЕСКО</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="lkm"><td>20</td><td>КамХимКом</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="prod" data-d="plastics"><td>21</td><td>Казаньоргсинтез</td><td></td><td></td><td>✅</td><td></td><td></td></tr>
+<tr data-t="prod" data-d="plastics"><td>22</td><td>Ангарский СПО</td><td></td><td></td><td>✅</td><td></td><td></td></tr>
+<tr data-t="prod" data-d="plastics"><td>23</td><td>Томскнефтехим</td><td></td><td></td><td>✅</td><td></td><td></td></tr>
+<tr data-t="prod" data-d="plastics"><td>24</td><td>Уфаоргсинтез</td><td></td><td></td><td>✅</td><td></td><td></td></tr>
+<tr data-t="prod" data-d="plastics"><td>25</td><td>Нижнекамскнефтехим</td><td></td><td></td><td>✅</td><td></td><td></td></tr>
+<tr data-t="prod" data-d="plastics"><td>26</td><td>Газпром НХ Салават</td><td></td><td></td><td>✅</td><td></td><td></td></tr>
+<tr data-t="prod" data-d="plastics"><td>27</td><td>Ставропольская ХК</td><td></td><td></td><td>✅</td><td></td><td></td></tr>
+<tr data-t="prod" data-d="rubber"><td>28</td><td>НОРТГРАН</td><td></td><td></td><td></td><td>✅</td><td></td></tr>
+<tr data-t="prod" data-d="rubber"><td>29</td><td>ЭкоТек</td><td></td><td></td><td></td><td>✅</td><td></td></tr>
+<tr data-t="prod" data-d="rubber"><td>30</td><td>Wellt Chemicals</td><td></td><td></td><td></td><td>✅</td><td></td></tr>
+</table></div>
+<div class="sec" id="st">
+<h2>Торговые компании <span class="tg tt">19</span></h2>
+<table>
+<tr><th>#</th><th>Компания</th><th>ССС</th><th>ЛКМ</th><th>Пласт.</th><th>Кауч.</th><th>M</th></tr>
+<tr data-t="trade" data-d="sss rubber"><td>1</td><td><b>ГК ЕТС</b></td><td>✅</td><td></td><td></td><td>✅</td><td><span class="bm">M</span></td></tr>
+<tr data-t="trade" data-d="sss rubber"><td>2</td><td><b>Русхимсеть</b></td><td>✅</td><td></td><td></td><td>✅</td><td><span class="bm">M</span></td></tr>
+<tr data-t="trade" data-d="sss"><td>3</td><td>Еврохим-1</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="sss"><td>4</td><td>Revada Group</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="sss"><td>5</td><td>Велкомс Плюс</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="sss"><td>6</td><td>БАТОЛИТ</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="sss"><td>7</td><td>Афива</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="sss"><td>8</td><td>К плюс</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="sss"><td>9</td><td>СтройХимТрейд</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="sss"><td>10</td><td>Promcoat</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="sss"><td>11</td><td>Гидрозо</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="sss"><td>12</td><td>УралСтройГРУП</td><td>✅</td><td></td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="lkm"><td>13</td><td>ОКАХИМ</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="lkm"><td>14</td><td>КолорСервис</td><td></td><td>✅</td><td></td><td></td><td></td></tr>
+<tr data-t="trade" data-d="rubber"><td>15</td><td>Норильский никель</td><td></td><td></td><td></td><td>✅</td><td></td></tr>
+<tr data-t="trade" data-d="rubber"><td>16</td><td>Сибсульфур</td><td></td><td></td><td></td><td>✅</td><td></td></tr>
+<tr data-t="trade" data-d="rubber"><td>17</td><td>БИНА Групп</td><td></td><td></td><td></td><td>✅</td><td></td></tr>
+<tr data-t="trade" data-d="rubber"><td>18</td><td>URALRTI</td><td></td><td></td><td></td><td>✅</td><td></td></tr>
+</table></div>
+<details><summary>Сводка по направлениям</summary>
+<table style="margin-top:8px"><tr><th></th><th>Произв.</th><th>Торг.</th><th>Всего</th></tr>
+<tr><td>ССС</td><td>11</td><td>12</td><td>23</td></tr>
+<tr><td>ЛКМ</td><td>9</td><td>2</td><td>11</td></tr>
+<tr><td>Пластмассы</td><td>7</td><td>0</td><td>7</td></tr>
+<tr><td>Каучук</td><td>3</td><td>5</td><td>8</td></tr>
+<tr><td><b>ИТОГО</b></td><td><b>30</b></td><td><b>19</b></td><td><b>49</b></td></tr></table></details>
+<script>
+function fl(b,t){document.querySelectorAll('.f button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('tr[data-t]').forEach(r=>{const d=r.dataset.d,tt=r.dataset.t;let s=false;if(t==='all')s=true;else if(t==='prod')s=tt==='prod';else if(t==='trade')s=tt==='trade';else s=d.includes(t);r.style.display=s?'':'none'})}
+</script></body></html>

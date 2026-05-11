@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анализ рынка — Аддитив Плюс</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #eee; overflow: hidden; }
+.slide { display: none; min-height: 100vh; padding: 40px 60px; flex-direction: column; justify-content: center; }
+.slide.active { display: flex; }
+h1 { font-size: 2.4em; margin-bottom: 20px; color: #e94560; }
+h2 { font-size: 1.8em; margin-bottom: 16px; color: #0f3460; background: #e94560; display: inline-block; padding: 6px 20px; border-radius: 6px; }
+h3 { font-size: 1.3em; margin: 16px 0 10px; color: #16c79a; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.85em; }
+th { background: #0f3460; color: #fff; padding: 10px 12px; text-align: left; }
+td { padding: 8px 12px; border-bottom: 1px solid #333; }
+tr:nth-child(even) { background: rgba(255,255,255,0.05); }
+tr:hover { background: rgba(233,69,96,0.15); }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+.red { background: #e94560; }
+.green { background: #16c79a; color: #000; }
+.yellow { background: #f5a623; color: #000; }
+.blue { background: #0f3460; }
+.metric { background: #16213e; padding: 16px 24px; border-radius: 10px; margin: 8px; display: inline-block; text-align: center; min-width: 160px; border-left: 4px solid #e94560; }
+.metric .val { font-size: 2em; font-weight: bold; color: #e94560; }
+.metric .lbl { font-size: 0.8em; color: #aaa; margin-top: 4px; }
+.metrics-row { display: flex; flex-wrap: wrap; gap: 0; justify-content: center; margin: 16px 0; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.card { background: #16213e; padding: 20px; border-radius: 10px; }
+.card h3 { margin-top: 0; }
+.nav { position: fixed; bottom: 20px; right: 30px; z-index: 100; display: flex; gap: 10px; }
+.nav button { background: #e94560; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 1em; }
+.nav button:hover { background: #c73a52; }
+.page-num { position: fixed; bottom: 24px; left: 30px; color: #666; font-size: 0.9em; }
+.swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.swot-cell { padding: 16px; border-radius: 8px; }
+.swot-s { background: rgba(22,199,154,0.15); border-left: 4px solid #16c79a; }
+.swot-w { background: rgba(233,69,96,0.15); border-left: 4px solid #e94560; }
+.swot-o { background: rgba(15,52,96,0.4); border-left: 4px solid #4a90d9; }
+.swot-t { background: rgba(245,166,35,0.15); border-left: 4px solid #f5a623; }
+.swot-cell h4 { margin-bottom: 8px; font-size: 1.1em; }
+.swot-cell ul { padding-left: 18px; font-size: 0.85em; line-height: 1.6; }
+.bar-container { display: flex; align-items: center; margin: 4px 0; }
+.bar-label { width: 100px; font-size: 0.8em; text-align: right; padding-right: 10px; }
+.bar { height: 22px; background: linear-gradient(90deg, #e94560, #16c79a); border-radius: 3px; position: relative; }
+.bar-val { font-size: 0.75em; margin-left: 8px; white-space: nowrap; }
+.subtitle { color: #aaa; font-size: 1.1em; margin-bottom: 24px; }
+ul li { margin: 4px 0; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<!-- Слайд 1: Титульный -->
+<div class="slide active" id="s1">
+<h1>🔬 Анализ рынка химических добавок для ССС в РФ</h1>
+<p class="subtitle">Центральный игрок: ООО «Аддитив Плюс» — additivplus.ru</p>
+<div class="metrics-row">
+<div class="metric"><div class="val">1,0 млрд</div><div class="lbl">Выручка 2025</div></div>
+<div class="metric"><div class="val">↓ -11%</div><div class="lbl">Динамика YoY</div></div>
+<div class="metric"><div class="val">36 SKU</div><div class="lbl">Ассортимент</div></div>
+<div class="metric"><div class="val">37</div><div class="lbl">Сотрудников</div></div>
+<div class="metric"><div class="val">6 брендов</div><div class="lbl">MAPF, Forbocrete, Regopor...</div></div>
+</div>
+<p style="margin-top:30px; color:#666; font-size:0.9em;">Источник: rusprofile.ru, каталог «Ассортимент 2026» | Дата: 06.05.2026</p>
+</div>
+
+<!-- Слайд 2: Рынок ССС -->
+<div class="slide" id="s2">
+<h2>Рынок ССС в России</h2>
+<div class="metrics-row">
+<div class="metric"><div class="val">11,4 млн т</div><div class="lbl">Ёмкость 2025</div></div>
+<div class="metric"><div class="val">-3%</div><div class="lbl">Падение 2025</div></div>
+<div class="metric"><div class="val">320 млрд ₽</div><div class="lbl">Розница 2025</div></div>
+<div class="metric"><div class="val">-6…-8%</div><div class="lbl">Прогноз 2026</div></div>
+</div>
+<h3>Структура по вяжущему (2024)</h3>
+<table>
+<tr><th>Тип ССС</th><th>Объём, тыс. т</th><th>Доля</th><th>YoY</th></tr>
+<tr><td>Цементные</td><td>5 997</td><td>50,5%</td><td class="badge red">-3,1%</td></tr>
+<tr><td>Гипсовые и комплексные</td><td>5 551</td><td>46,7%</td><td class="badge yellow">-0,6%</td></tr>
+<tr><td>Полимерные шпатлёвки</td><td>296</td><td>2,5%</td><td class="badge red">-4,6%</td></tr>
+</table>
+<p style="color:#aaa; font-size:0.85em; margin-top:12px;">Источник: bestresearch.ru | Стабилизация ожидается к 2027</p>
+</div>
+
+<!-- Слайд 3: Карта конкурентов -->
+<div class="slide" id="s3">
+<h2>Конкуренты на рынке добавок для ССС</h2>
+<div class="grid">
+<div class="card">
+<h3>🔴 Сильные игроки</h3>
+<table>
+<tr><td><b>ГК ПОЛИПЛАСТ</b></td><td>Ген. спонсор Baltimix</td><td>Новомосковск</td></tr>
+<tr><td><b>Чжичжэн Групп</b></td><td>Спонсор Baltimix</td><td>Китай / Москва</td></tr>
+<tr><td><b>АО Афая</b></td><td>40+ брендов</td><td>СПб + Москва</td></tr>
+</table>
+<h3>🟡 Средние (27 компаний)</h3>
+<p style="font-size:0.85em;">Химпром, Реттенмайер Рус, ЕТС (4 филиала), Нортекс, Ревада, Поливерс Кемикал и др.</p>
+</div>
+<div class="card">
+<h3>География конкурентов</h3>
+<table>
+<tr><th>Регион</th><th>Кол-во</th><th>Доля</th></tr>
+<tr><td><b>Москва</b></td><td>15</td><td>56%</td></tr>
+<tr><td>Санкт-Петербург</td><td>4</td><td>14%</td></tr>
+<tr><td>Пермь</td><td>2</td><td>7%</td></tr>
+<tr><td>Другие (6 городов)</td><td>6</td><td>22%</td></tr>
+</table>
+<p style="color:#e94560; font-size:0.85em; margin-top:8px;">Москва — абсолютный центр рынка добавок (56%)</p>
+</div>
+</div>
+</div>
+
+<!-- Слайд 4: Топ-11 производителей ССС -->
+<div class="slide" id="s4">
+<h2>Топ-11 производителей ССС (клиенты АП)</h2>
+<table>
+<tr><th>#</th><th>Компания</th><th>Выручка, млрд ₽</th><th>YoY</th><th>Доля рынка</th></tr>
+<tr><td>1</td><td><b>Knauf</b></td><td>26,0</td><td class="badge green">+7%</td><td><b>28,8%</b></td></tr>
+<tr><td>2</td><td><b>Weber</b> (Saint-Gobain)</td><td>20,0</td><td class="badge green">+27%</td><td><b>22,1%</b></td></tr>
+<tr><td>3</td><td>Bergauf</td><td>9,4</td><td class="badge green">+2%</td><td>10,4%</td></tr>
+<tr><td>4</td><td>Старатели</td><td>6,1</td><td class="badge red">-4%</td><td>6,8%</td></tr>
+<tr><td>5</td><td>Litokol</td><td>6,1</td><td>—</td><td>6,8%</td></tr>
+<tr><td>6</td><td>Основит</td><td>5,9</td><td>—</td><td>6,5%</td></tr>
+<tr><td>7</td><td>Плитонит</td><td>5,8</td><td class="badge green">+4%</td><td>6,4%</td></tr>
+<tr><td>8</td><td>БАСФ</td><td>4,5</td><td>—</td><td>5,0%</td></tr>
+<tr><td>9</td><td>Брозекс</td><td>3,5</td><td class="badge green">+9%</td><td>3,9%</td></tr>
+<tr><td>10</td><td>Юнис</td><td>2,9</td><td class="badge green">+405%</td><td>3,2%</td></tr>
+<tr><td>11</td><td>Ceresit (Henkel)</td><td>0,094</td><td>—</td><td>0,1%</td></tr>
+</table>
+<p style="margin-top:10px;"><b>Итого: ≈ 90,3 млрд ₽</b> | АП ≈ 1,1% от суммарной выручки</p>
+</div>
+
+<!-- Слайд 5: Scorecard -->
+<div class="slide" id="s5">
+<h2>Scorecard Аддитив Плюс</h2>
+<table>
+<tr><th>Блок</th><th>Метрика</th><th>Текущее</th><th>Цель</th><th>Статус</th></tr>
+<tr><td>Финансы</td><td>Выручка</td><td>1,0 млрд ₽ (2025)</td><td>> 1,2 млрд</td><td class="badge yellow">⚠️ -11% YoY</td></tr>
+<tr><td>Финансы</td><td>Рентабельность</td><td>⚠️ Warning</td><td>> 5%</td><td class="badge red">🔴 Критично</td></tr>
+<tr><td>Рынок</td><td>Доля рынка</td><td>≈1,1%</td><td>> 3%</td><td class="badge yellow">🟡 Ниже среднего</td></tr>
+<tr><td>Рынок</td><td>Рост vs рынок</td><td>-11% vs -3%</td><td>> 0%</td><td class="badge red">🔴 Отстаёт</td></tr>
+<tr><td>Клиенты</td><td>NPS</td><td>ждёт опросов</td><td>> 7</td><td style="color:#666;">—</td></tr>
+<tr><td>Продукты</td><td>SKU</td><td>36</td><td>> 40</td><td class="badge green">🟢 Сильно</td></tr>
+</table>
+<h3>Ключевое: АП падает быстрее рынка (-11% vs -3%)</h3>
+<p style="color:#e94560; font-size:0.95em;">⚠️ Финансовое положение: резкое падение прибыли, отрицательная обеспеченность собственными средствами</p>
+</div>
+
+<!-- Слайд 6: SWOT -->
+<div class="slide" id="s6">
+<h2>SWOT-анализ Аддитив Плюс</h2>
+<div class="swot-grid">
+<div class="swot-cell swot-s">
+<h4>💪 Сильные стороны</h4>
+<ul>
+<li>36 SKU, 9 групп, 6 брендов</li>
+<li>Специализация на ГЦПВ</li>
+<li>Полное покрытие сегментов ССС</li>
+<li>Тех. экспертиза (точные дозировки)</li>
+</ul>
+</div>
+<div class="swot-cell swot-w">
+<h4>⚠️ Слабые стороны</h4>
+<ul>
+<li>Нет собств. производства (торговля)</li>
+<li>Зависимость от импортного сырья</li>
+<li>Сайт недоступен (ETIMEDOUT)</li>
+<li>Меньшая видимость vs ПОЛИПЛАСТ</li>
+</ul>
+</div>
+<div class="swot-cell swot-o">
+<h4>🚀 Возможности</h4>
+<ul>
+<li>Импортозамещение (уход Wacker, AkzoNobel)</li>
+<li>Рост механизации (Forbocrete)</li>
+<li>Baltimix-2026 — нетворкинг</li>
+<li>Рынок 320 млрд ₽ — ниша добавок</li>
+</ul>
+</div>
+<div class="swot-cell swot-t">
+<h4>⚡ Угрозы</h4>
+<ul>
+<li>Стагнация ССС: -3% → -8%</li>
+<li>Китайские конкуренты (Чжичжэн)</li>
+<li>Высокая власть покупателей (Knauf, Weber)</li>
+<li>Курс валют → рост себестоимости</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Слайд 7: Рекомендации -->
+<div class="slide" id="s7">
+<h2>Стратегические рекомендации</h2>
+<table>
+<tr><th>Приоритет</th><th>Рекомендация</th><th>Эффект</th><th>Срок</th></tr>
+<tr><td class="badge red">🔴 Критический</td><td><b>Восстановить сайт additivplus.ru</b></td><td>Генерация лидов, цифровое присутствие</td><td>Немедленно</td></tr>
+<tr><td class="badge yellow">🟡 Высокий</td><td><b>Спонсорство + доклад на Baltimix-2026</b></td><td>Паритет с ПОЛИПЛАСТ по видимости</td><td>До 18.08.2026</td></tr>
+<tr><td class="badge yellow">🟡 Высокий</td><td><b>Прямые продажи Knauf, Weber, Bergauf</b></td><td>Расширение клиентской базы</td><td>Q3 2026</td></tr>
+<tr><td class="badge blue">Синий Средний</td><td>Развивать линейку ГЦПВ (SU 88/90, CE 400)</td><td>Захват ниши комбинир. вяжущих</td><td>2026</td></tr>
+<tr><td class="badge blue">Синий Средний</td><td>Получить фин. данные bo.nalog.gov.ru</td><td>Ценовая политика, бенчмаркинг</td><td>Q2 2026</td></tr>
+<tr><td style="color:#666;">Низкий</td><td>Региональные склады (Екатеринбург, Иркутск)</td><td>Расширение географии</td><td>2027</td></tr>
+</table>
+<h3>Главный вывод</h3>
+<p style="font-size:1.1em; line-height:1.6;">АП — один из наиболее ассортиментно глубоких поставщиков добавок (36 SKU, 6 брендов), но <span style="color:#e94560;"><b>теряет позиции</b></span>: выручка -11% при рынке -3%. Ключевые действия: <b>сайт → Baltimix → крупные клиенты</b>.</p>
+</div>
+
+<!-- Навигация -->
+<div class="nav">
+<button onclick="prev()">← Назад</button>
+<button onclick="next()">Вперед →</button>
+</div>
+<div class="page-num" id="pn">1 / 7</div>
+
+<script>
+let cur=1,total=7;
+function show(n){
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  document.getElementById('pn').textContent=n+' / '+total;
+}
+function next(){if(cur<total){cur++;show(cur);}}
+function prev(){if(cur>1){cur--;show(cur);}}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')next();if(e.key==='ArrowLeft')prev();});
+</script>
+</body>
+</html>

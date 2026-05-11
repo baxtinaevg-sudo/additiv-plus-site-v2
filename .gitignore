@@ -1,0 +1,16 @@
+# Business context (hidden)
+.business/*.md
+
+# Generated files
+*.pdf
+*.jpg
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Logs
+*.log

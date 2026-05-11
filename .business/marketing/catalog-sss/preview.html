@@ -1,0 +1,1149 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ассортимент 2026 — Аддитив Плюс</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg: #F4F6F9;
+            --surface: #FFFFFF;
+            --text: #1B2A3D;
+            --text-sec: #5A6B7D;
+            --text-muted: #8C99A8;
+            --accent: #6C3FCD;
+            --accent-light: #F0EAF8;
+            --accent-mid: #B8A0E3;
+            --border: #D1D9E0;
+            --border-light: #E8ECF0;
+            --danger: #8A4B2E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            font-size: 14px;
+        }
+
+        /* ─── COVER ─── */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface);
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        .cover-inner {
+            max-width: 560px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .cover-logo {
+            margin-bottom: 3rem;
+        }
+
+        .cover-logo img {
+            height: 64px;
+            width: auto;
+        }
+
+        .cover-line {
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            margin-bottom: 3rem;
+        }
+
+        .cover-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+
+        .cover-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.6rem;
+            font-weight: 400;
+            letter-spacing: 14px;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+        }
+
+        .cover-subtitle {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-sec);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 3.5rem;
+        }
+
+        .cover-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 2;
+        }
+
+        .cover-meta strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .cover-meta a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ─── CATALOG SECTION ─── */
+        .catalog-section {
+            background: var(--surface);
+            padding: 2.5rem 2.5rem 2rem;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        .section-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 0.5px;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ─── BRAND SUB-HEADERS ─── */
+        .brand-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        /* ─── TABLES ─── */
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-table th {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            padding: 0 0.5rem 0.6rem;
+            border-bottom: 2px solid var(--accent);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .product-table th:first-child { text-align: left; }
+
+        .product-table td {
+            padding: 0.7rem 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--text-sec);
+            vertical-align: top;
+        }
+
+        .product-table tr:last-child td { border-bottom: none; }
+
+        .p-name {
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+        }
+
+        .p-viscosity {
+            font-family: 'JetBrains Mono', monospace;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.78rem;
+        }
+
+        .p-desc {
+            color: var(--text-sec);
+            font-size: 0.8rem;
+        }
+
+        .p-apply {
+            color: var(--text);
+            font-size: 0.8rem;
+        }
+
+        .dosage {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: var(--accent);
+            border: 1px solid var(--accent-mid);
+            padding: 0.1rem 0.45rem;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+
+        /* ─── SECTION FOOTER ─── */
+        .section-footer {
+            margin-top: 2rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .section-footer span {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .disclaimer {
+            font-style: italic;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+        }
+
+        /* ─── CROSS-REF TABLE ─── */
+        .cross-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+        }
+
+        .cross-table th {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            padding: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .cross-table th:first-child {
+            text-align: left;
+            min-width: 140px;
+        }
+
+        .cross-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-sec);
+        }
+
+        .cross-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .cross-table .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .cross-table td:not(:first-child) {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cross-table tr:hover td {
+            background: var(--accent-light);
+        }
+
+        /* ─── BACK PAGE ─── */
+        .back-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--text);
+            color: var(--accent-mid);
+            padding: 4rem 2rem;
+        }
+
+        .back-inner {
+            max-width: 460px;
+            text-align: center;
+        }
+
+        .back-company {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-bottom: 2rem;
+        }
+
+        .back-line {
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin: 0 auto 2rem;
+        }
+
+        .back-details {
+            font-size: 0.82rem;
+            line-height: 2;
+        }
+
+        .back-details strong {
+            color: var(--accent-mid);
+            font-weight: 500;
+        }
+
+        .back-qr {
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .back-qr-text {
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .back-disclaimer {
+            font-size: 0.65rem;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        /* ─── PRINT ─── */
+        @page { size: A4; margin: 18mm 20mm; }
+
+        @media print {
+            body { background: white; }
+            .cover { min-height: auto; height: 100vh; page-break-after: always; }
+            .catalog-section { page-break-before: always; padding: 0; max-width: none; }
+            .product-table tr, .cross-table tr { page-break-inside: avoid; }
+            .back-page { min-height: auto; height: 100vh; page-break-before: always; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .cover-title, .cover-year { font-size: 1.8rem; }
+            .section-header { gap: 0.75rem; }
+            .section-title { font-size: 1.1rem; }
+            .product-table td, .product-table th { font-size: 0.72rem; padding: 0.4rem; }
+            .p-name { white-space: normal; }
+            .cross-table { font-size: 0.65rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════ ОБЛОЖКА ════════════════════════ -->
+<div class="cover">
+    <div class="cover-inner">
+        <div class="cover-logo">
+            <img src="../../../logo.jpg" alt="Аддитив Плюс">
+        </div>
+        <div class="cover-line"></div>
+        <div class="cover-title">Ассортимент</div>
+        <div class="cover-year">2026</div>
+        <div class="cover-subtitle">Добавки для производства сухих строительных смесей</div>
+        <div class="cover-meta">
+            <strong>ООО «АДДИТИВ ПЛЮС»</strong><br>
+            117405, Москва, ул. Дорожная, д. 60А, стр. 1<br>
+            Тел. +7 903 132-09-20 &nbsp;·&nbsp; info@additivplus.ru<br>
+            <a href="https://additivplus.ru">additivplus.ru</a>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════ 01 · ЭФИРЫ ЦЕЛЛЮЛОЗЫ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <path d="M20 4L34 12M20 4L6 12M20 36V28M20 36L6 28M34 12V28M6 12V28" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+            <circle cx="20" cy="20" r="4" fill="#6C3FCD" opacity="0.3"/>
+        </svg></span>
+        <h2 class="section-title">Эфиры целлюлозы</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF CE</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Вязкость, мПа·с</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF CE 23015</td>
+                <td class="p-viscosity">8 000 – 15 000</td>
+                <td class="p-apply">Клей С1Т, С2Е, С2ТЕ, C1S1, C2S1, C2S2, ССТИ</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 23708</td>
+                <td class="p-viscosity">30 000 – 40 000</td>
+                <td class="p-apply">Клей C0, C1, ССТИ</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 27205</td>
+                <td class="p-viscosity">30 000 – 40 000</td>
+                <td class="p-apply">ГЭМЦ. Модификация для цементных составов: клеи С1, С2, штукатурки</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 7820</td>
+                <td class="p-viscosity">35 000 – 45 000</td>
+                <td class="p-apply">Штукатурки и шпатлёвки. Повышенная трещиностойкость по сильно впитывающим основаниям</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 27155</td>
+                <td class="p-viscosity">30 000 – 40 000</td>
+                <td class="p-apply">ГЭМЦ. Модификация для гипсовых составов: штукатурки, шпатлёвки, клеи</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 30000</td>
+                <td class="p-viscosity">20 000 – 30 000</td>
+                <td class="p-apply">Клей С0, С1, кладочные растворы, шпатлёвки и штукатурки, декоративные штукатурки</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 65000</td>
+                <td class="p-viscosity">60 000 – 70 000</td>
+                <td class="p-apply">Клей С0, С1, кладочные растворы, шпатлёвки, штукатурки, клеи для теплоизоляции</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF CE 400</td>
+                <td class="p-viscosity">600 – 1 000</td>
+                <td class="p-apply">Наливные полы, стяжки, гидроизоляция, ремонтные составы, ГЦВ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="brand-label">EXTRACELL</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Вязкость, мПа·с</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Extracell CE 70000</td>
+                <td class="p-viscosity">55 000 – 65 000</td>
+                <td class="p-apply">Клей С0, С1, кладочные растворы, шпатлёвки, штукатурки, клеи для теплоизоляции</td>
+            </tr>
+            <tr>
+                <td class="p-name">EXTRACELL 27541</td>
+                <td class="p-viscosity">—</td>
+                <td class="p-apply">—</td>
+            </tr>
+            <tr>
+                <td class="p-name">EXTRACELL 75503</td>
+                <td class="p-viscosity">—</td>
+                <td class="p-apply">—</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 02 · РЕДИСПЕРГИРУЕМЫЕ ПОРОШКИ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="6" width="20" height="28" rx="2" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="17" cy="15" r="2.5" fill="#6C3FCD" opacity="0.3"/>
+            <circle cx="24" cy="15" r="2.5" fill="#6C3FCD" opacity="0.3"/>
+            <circle cx="17" cy="23" r="2.5" fill="#6C3FCD" opacity="0.3"/>
+            <circle cx="24" cy="23" r="2.5" fill="#6C3FCD" opacity="0.3"/>
+            <line x1="14" y1="30" x2="26" y2="30" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+        </svg></span>
+        <h2 class="section-title">Редиспергируемые порошки</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF PE</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Тип сополимера</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF PE 5044 S</td>
+                <td class="p-desc">Универсальный мягкий</td>
+                <td class="p-apply">Клей С1/С2, ремонтные растворы, шпатлёвки, штукатурки, СФТК</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF PE 5010 S</td>
+                <td class="p-desc">Универсальный жёсткий</td>
+                <td class="p-apply">Клей С1/С2, шпатлёвки, саморастекающиеся массы, затирки, штукатурки</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF PE 4115 S</td>
+                <td class="p-desc">Универсальный жёсткий</td>
+                <td class="p-apply">Клей С1/С2, полимерные шпатлёвки, штукатурки, ремонтные растворы</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF PE 4121 S</td>
+                <td class="p-desc">Полуэластичный</td>
+                <td class="p-apply">Шпатлёвки, декоративные штукатурки, клей С1/С2, СФТК</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF PE 5549 H</td>
+                <td class="p-desc">Гидрофобный</td>
+                <td class="p-apply">Теплоизоляционные штукатурки, гидроизоляция, затирки, декоративные штукатурки, фасадные шпатлёвки</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 03 · РЕОЛОГИЧЕСКИЕ ДОБАВКИ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 20 Q13 10 20 20 Q27 30 34 20" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="6" cy="20" r="2" fill="#6C3FCD" opacity="0.5"/>
+            <circle cx="20" cy="20" r="2" fill="#6C3FCD" opacity="0.5"/>
+            <circle cx="34" cy="20" r="2" fill="#6C3FCD" opacity="0.5"/>
+        </svg></span>
+        <h2 class="section-title">Реологические добавки и стабилизаторы</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">FORBOCRETE K · Загустители</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Дозировка</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Forbocrete K 55</td>
+                <td class="p-desc">Модифицированный анионный акриламид</td>
+                <td><span class="dosage">0.01–0.03 %</span></td>
+                <td class="p-apply">Плиточные клеи, шпатлёвки</td>
+            </tr>
+            <tr>
+                <td class="p-name">Forbocrete K 25</td>
+                <td class="p-desc">Повышенная скорость диспергирования</td>
+                <td><span class="dosage">0.01–0.10 %</span></td>
+                <td class="p-apply">Плиточные клеи, шпатлёвки, штукатурки, в т.ч. механизированного нанесения</td>
+            </tr>
+            <tr>
+                <td class="p-name">Forbocrete S 010</td>
+                <td class="p-desc">Загуститель для высокоподвижных систем. Высокая тиксотропность</td>
+                <td>—</td>
+                <td class="p-apply">Магнезиальные полы, самоуплотняющиеся бетоны (СУБ), наливные полы</td>
+            </tr>
+            <tr>
+                <td class="p-name">Forbocrete K 2000</td>
+                <td class="p-desc">Сополимер акриламида, мелкодисперсный порошок</td>
+                <td><span class="dosage">0.002–0.01 %</span></td>
+                <td class="p-apply">Клеи, цементные растворы, гипсовые штукатурки машинного нанесения</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF DG / DG-F</td>
+                <td class="p-desc">Дьютановая камедь концентрированная</td>
+                <td>—</td>
+                <td class="p-apply">Загущение сухих строительных смесей</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="brand-label">FORBOCRETE S · Стабилизаторы</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Forbocrete K 252</td>
+                <td class="p-desc">Комплексный стабилизатор: полимеры + ПАВ + минеральные глины. Тиксотропные свойства, улучшает прокачиваемость</td>
+                <td class="p-apply">Штукатурки, шпатлёвки; прокачиваемость на штукатурных станциях</td>
+            </tr>
+            <tr>
+                <td class="p-name">Forbocrete S 011</td>
+                <td class="p-desc">Комплексный стабилизатор. Предотвращение расслаивания и седиментации</td>
+                <td class="p-apply">Наливные полы (SLU), СУБ, печатный бетон, инъекционные растворы, огнеупоры</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 04 · СУПЕРПЛАСТИФИКАТОРЫ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6C20 6 10 18 10 24C10 29.5 14.5 34 20 34C25.5 34 30 29.5 30 24C30 18 20 6 20 6Z" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <path d="M15 26C15 26 17 22 20 22C23 22 25 26 25 26" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+        </svg></span>
+        <h2 class="section-title">Суперпластификаторы</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF SU</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF SU 008</td>
+                <td class="p-desc">Поликарбоксилатный. Поддержание постоянства подвижности. Термостабильность до 100 °C</td>
+                <td class="p-apply">Универсальный</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF SU 88</td>
+                <td class="p-desc">Поликарбоксилатный. Для систем на комбинированном вяжущем и ГЦПВ. Термостабильность до 100 °C</td>
+                <td class="p-apply">Системы на комбинированном вяжущем и ГЦПВ</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF SU 90</td>
+                <td class="p-desc">Поликарбоксилатный. Для систем на комбинированном вяжущем и ГЦПВ. Термостабильность до 100 °C</td>
+                <td class="p-apply">Системы на комбинированном вяжущем и ГЦПВ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 05 · ВОЗДУХОВОВЛЕКАЮЩИЕ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="5" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <circle cx="26" cy="14" r="4" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <circle cx="20" cy="26" r="6" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <circle cx="10" cy="26" r="2.5" fill="#6C3FCD" opacity="0.2"/>
+            <circle cx="31" cy="24" r="2" fill="#6C3FCD" opacity="0.2"/>
+        </svg></span>
+        <h2 class="section-title">Воздухововлекающие добавки</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">REGOPOR</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Regopor LP 50</td>
+                <td class="p-desc" rowspan="3">Смесь анионного и неионогенного ПАВ. Разнокалиберная пористость растворного камня. Стабильные поры разного диаметра — максимальный выход раствора</td>
+                <td class="p-apply" rowspan="3">Цементные, гипсовые, известковые составы. Уменьшение плотности, получение максимального выхода раствора</td>
+            </tr>
+            <tr>
+                <td class="p-name">Regopor LP 51</td>
+            </tr>
+            <tr>
+                <td class="p-name">Regopor LP 52</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 06 · УСКОРЯЮЩИЕ И ЗАМЕДЛЯЮЩИЕ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="14" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <line x1="20" y1="20" x2="20" y2="10" stroke="#6C3FCD" stroke-width="1.5"/>
+            <line x1="20" y1="20" x2="28" y2="20" stroke="#6C3FCD" stroke-width="1"/>
+            <circle cx="20" cy="20" r="1.5" fill="#6C3FCD"/>
+        </svg></span>
+        <h2 class="section-title">Ускоряющие и замедляющие добавки</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Тип</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Laolin 1</td>
+                <td class="p-desc">Модификатор</td>
+                <td class="p-desc">Модификатор схватывания и твердения гипса</td>
+                <td class="p-apply">Снижение трещинообразования по пористым основаниям (пено- и газобетон, газосиликатные блоки)</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF A 030</td>
+                <td class="p-desc">Ускоритель</td>
+                <td class="p-desc">Ускоритель твердения цементных систем</td>
+                <td class="p-apply">Ремонтные составы, контактирующие с металлической арматурой</td>
+            </tr>
+            <tr>
+                <td class="p-name">Карбонат лития</td>
+                <td class="p-desc">Ускоритель</td>
+                <td class="p-desc">Ускоритель схватывания</td>
+                <td class="p-apply">Универсальный</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF Retard 10</td>
+                <td class="p-desc">Замедлитель</td>
+                <td class="p-desc">Тонкомолотый. Антислеживающие добавки на основе фруктовых кислот</td>
+                <td class="p-apply">Замедление схватывания гипсовых систем</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 07 · ПРОТИВОУСАДОЧНЫЕ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="8" y1="20" x2="16" y2="20" stroke="#6C3FCD" stroke-width="1.5"/>
+            <line x1="24" y1="20" x2="32" y2="20" stroke="#6C3FCD" stroke-width="1.5"/>
+            <path d="M16 14V26" stroke="#6C3FCD" stroke-width="1.5"/>
+            <path d="M24 14V26" stroke="#6C3FCD" stroke-width="1.5"/>
+            <path d="M16 14L20 17L24 14" stroke="#6C3FCD" stroke-width="1" opacity="0.5"/>
+            <path d="M16 26L20 23L24 26" stroke="#6C3FCD" stroke-width="1" opacity="0.5"/>
+        </svg></span>
+        <h2 class="section-title">Противоусадочные добавки</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">REOBOND</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Reobond NPG 100</td>
+                <td class="p-desc">Порошковая противоусадочная добавка. Уменьшение усадки при высыхании, снижение капиллярных напряжений, повышение трещиностойкости, уменьшение диффузии хлорид-ионов</td>
+                <td class="p-apply">Все виды ССС. Не ухудшает удобоукладываемость</td>
+            </tr>
+            <tr>
+                <td class="p-name">Reobond CSA 20</td>
+                <td class="p-desc">Порошковая противоусадочная добавка. Компенсация усадки портландцементов. Ускорение ранних сроков схватывания</td>
+                <td class="p-apply">Торкрет-бетоны, тампонажные бетоны, безусадочные смеси (наливные полы, промышленные полы, ремонтные составы)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 08 · ПЕНОГАСИТЕЛИ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="18" r="8" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <line x1="14" y1="24" x2="26" y2="12" stroke="#6C3FCD" stroke-width="1.5"/>
+        </svg></span>
+        <h2 class="section-title">Пеногасители</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF DF</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF DF 911</td>
+                <td class="p-desc">Порошковый пеногаситель универсальный</td>
+                <td class="p-apply">Самовыравнивающиеся полы, затирки, ремонтные растворы, шпатлёвки</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 09 · ЭФИРЫ КРАХМАЛА ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="14" r="4" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="13" cy="26" r="4" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="27" cy="26" r="4" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <line x1="20" y1="18" x2="13" y2="22" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+            <line x1="20" y1="18" x2="27" y2="22" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+        </svg></span>
+        <h2 class="section-title">Эфиры крахмала</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF SE 30</td>
+                <td class="p-desc">Эфир крахмала универсальный</td>
+                <td class="p-apply">Плиточные клеи, цементные и гипсовые штукатурки</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 10 · ДИСПЕРГАТОРЫ / ПАВ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="28" cy="12" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="12" cy="28" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="28" cy="28" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="20" cy="20" r="3" fill="#6C3FCD" opacity="0.6"/>
+            <line x1="20" y1="20" x2="12" y2="12" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+            <line x1="20" y1="20" x2="28" y2="12" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+            <line x1="20" y1="20" x2="12" y2="28" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+            <line x1="20" y1="20" x2="28" y2="28" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+        </svg></span>
+        <h2 class="section-title">Диспергаторы / ПАВ</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Область применения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF Disp 50</td>
+                <td class="p-desc">Диспергатор, ПАВ</td>
+                <td class="p-apply">Улучшение смачиваемости, снижение липкости к инструменту, повышение эластичности, повышение морозостойкости</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 11 · ПОДБОР ПО ОБЛАСТИ ПРИМЕНЕНИЯ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="12" height="12" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <rect x="22" y="6" width="12" height="12" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <rect x="6" y="22" width="12" height="12" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <rect x="22" y="22" width="12" height="12" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+            <rect x="9" y="9" width="6" height="6" fill="#6C3FCD" opacity="0.2"/>
+            <rect x="25" y="9" width="6" height="6" fill="#6C3FCD" opacity="0.2"/>
+            <rect x="9" y="25" width="6" height="6" fill="#6C3FCD" opacity="0.2"/>
+        </svg></span>
+        <h2 class="section-title">Подбор по области применения</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="cross-table">
+        <thead>
+            <tr>
+                <th>Продукт</th>
+                <th>Штукатурки</th>
+                <th>Шпатлёвки</th>
+                <th>Клеи плит.</th>
+                <th>Наливные полы</th>
+                <th>Гидроизоляция</th>
+                <th>Ремонтные</th>
+                <th>СФТК</th>
+                <th>Машин. нанес.</th>
+                <th>ГЦПВ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>MAPF CE 23015</td>
+                <td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 23708</td>
+                <td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 27205</td>
+                <td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 7820</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 27155</td>
+                <td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 30000</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 65000</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF CE 400</td>
+                <td></td><td></td><td></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td><span class="dot"></span></td>
+            </tr>
+            <tr>
+                <td>Extracell CE 70000</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 5044 S</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 5010 S</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 4115 S</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 4121 S</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF PE 5549 H</td>
+                <td><span class="dot"></span></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete K 55</td>
+                <td></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete K 25</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete K 252</td>
+                <td><span class="dot"></span></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete S 010</td>
+                <td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete S 011</td>
+                <td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Forbocrete K 2000</td>
+                <td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF SE 30</td>
+                <td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Laolin 1</td>
+                <td><span class="dot"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF A 030</td>
+                <td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF DF 911</td>
+                <td></td><td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Reobond CSA 20</td>
+                <td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>MAPF SU 88</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td>
+            </tr>
+            <tr>
+                <td>MAPF SU 90</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой. Перечень областей применения носит рекомендательный характер.</p>
+</section>
+
+<!-- ════════════════════════ ОБРАТНАЯ СТРАНИЦА ════════════════════════ -->
+<div class="back-page">
+    <div class="back-inner">
+        <div class="back-company">ООО «АДДИТИВ ПЛЮС»</div>
+        <div class="back-line"></div>
+        <div class="back-details">
+            <strong>ИНН</strong> 5036165686 &nbsp;·&nbsp; <strong>ОГРН</strong> 1175074003367<br>
+            117405, Москва, ул. Дорожная, д. 60А, стр. 1<br><br>
+            <strong>Тел.</strong> +7 903 132-09-20<br>
+            <strong>E-mail</strong> info@additivplus.ru<br>
+            <strong>Web</strong> additivplus.ru
+        </div>
+        <div class="back-qr">
+            <div class="back-qr-text">QR-код для сайта</div>
+        </div>
+        <p class="back-disclaimer">Настоящее предложение не является офертой. Все характеристики указаны на основании каталога «Ассортимент 2026» ООО «АДДИТИВ ПЛЮС».</p>
+    </div>
+</div>
+
+</body>
+</html></task_progress>
+</write_to_file>
