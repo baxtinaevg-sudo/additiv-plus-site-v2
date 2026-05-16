@@ -1,0 +1,37 @@
+[
+  {
+    "id": "u1",
+    "name": "Алексей Петров",
+    "role": "admin",
+    "avatar": "АП",
+    "email": "a.petrov@additiv-plus.ru"
+  },
+  {
+    "id": "u2",
+    "name": "Мария Иванова",
+    "role": "manager",
+    "avatar": "МИ",
+    "email": "m.ivanova@additiv-plus.ru"
+  },
+  {
+    "id": "u3",
+    "name": "Дмитрий Козлов",
+    "role": "manager",
+    "avatar": "ДК",
+    "email": "d.kozlov@additiv-plus.ru"
+  },
+  {
+    "id": "u4",
+    "name": "Елена Смирнова",
+    "role": "director",
+    "avatar": "ЕС",
+    "email": "e.smirnova@additiv-plus.ru"
+  },
+  {
+    "id": "u5",
+    "name": "Ольга Николаева",
+    "role": "accountant",
+    "avatar": "ОН",
+    "email": "o.nikolaeva@additiv-plus.ru"
+  }
+]

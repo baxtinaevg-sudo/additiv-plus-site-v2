@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Верифицированная база компаний — ССС</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', Tahoma, sans-serif; background:#f5f5f5; color:#333; }
+.header { background:linear-gradient(135deg,#1a237e,#283593); color:#fff; padding:30px; text-align:center; }
+.header h1 { font-size:28px; margin-bottom:8px; }
+.header p { font-size:14px; opacity:0.8; }
+.stats { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; padding:20px; background:#fff; border-bottom:2px solid #e0e0e0; }
+.stat-card { text-align:center; padding:15px 25px; border-radius:10px; min-width:120px; }
+.stat-card.green { background:#e8f5e9; border:2px solid #4caf50; }
+.stat-card.red { background:#ffebee; border:2px solid #f44336; }
+.stat-card.blue { background:#e3f2fd; border:2px solid #2196f3; }
+.stat-card.orange { background:#fff3e0; border:2px solid #ff9800; }
+.stat-card .num { font-size:32px; font-weight:bold; }
+.stat-card .label { font-size:12px; margin-top:4px; color:#666; }
+.tabs { display:flex; background:#fff; border-bottom:2px solid #e0e0e0; padding:0 20px; }
+.tab { padding:12px 24px; cursor:pointer; font-size:14px; font-weight:500; border-bottom:3px solid transparent; transition:0.2s; }
+.tab:hover { background:#f5f5f5; }
+.tab.active { border-bottom-color:#1a237e; color:#1a237e; font-weight:bold; }
+.content { padding:20px; }
+table { width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1); font-size:13px; }
+thead th { background:#1a237e; color:#fff; padding:10px 8px; text-align:left; font-size:12px; white-space:nowrap; }
+tbody td { padding:8px; border-bottom:1px solid #eee; vertical-align:top; }
+tbody tr:hover { background:#f8f9ff; }
+.status-active { background:#e8f5e9; color:#2e7d32; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600; white-space:nowrap; }
+.status-liquidated { background:#ffebee; color:#c62828; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600; white-space:nowrap; }
+.status-unknown { background:#fff3e0; color:#e65100; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600; white-space:nowrap; }
+.badge { display:inline-block; background:#e3f2fd; color:#1565c0; padding:1px 6px; border-radius:8px; font-size:10px; margin:1px; }
+.filter-row { display:flex; gap:10px; padding:15px 20px; background:#fff; align-items:center; flex-wrap:wrap; }
+.filter-row label { font-size:13px; font-weight:500; }
+.filter-row select, .filter-row input { padding:6px 10px; border:1px solid #ccc; border-radius:6px; font-size:13px; }
+.filter-row button { padding:6px 16px; background:#1a237e; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:13px; }
+.filter-row button:hover { background:#283593; }
+.count-info { font-size:13px; color:#666; padding:10px 20px; }
+.section-title { font-size:18px; font-weight:bold; padding:15px 20px 5px; color:#1a237e; }
+td a { color:#1565c0; text-decoration:none; }
+td a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 Верифицированная база компаний ССС</h1>
+  <p>Данные из ФНС (egrul.nalog.ru) + Rusprofile + официальные сайты | 15.05.2026</p>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('all')">Все 178</div>
+  <div class="tab" onclick="showTab('active')">🟢 Действующие 80</div>
+  <div class="tab" onclick="showTab('liquidated')">🔴 Ликвидированные 98</div>
+  <div class="tab" onclick="showTab('contacts')">📞 С контактами</div>
+  <div class="tab" onclick="showTab('mfg')">🏭 Производители 27</div>
+</div>
+
+<div class="filter-row">
+  <label>Поиск:</label>
+  <input type="text" id="search" placeholder="Название, ИНН, email..." oninput="filterTable()" style="width:250px">
+  <label>Статус:</label>
+  <select id="statusFilter" onchange="filterTable()">
+    <option value="">Все</option>
+    <option value="действующая">Действующие</option>
+    <option value="ликвидирована">Ликвидированные</option>
+  </select>
+  <button onclick="resetFilters()">Сброс</button>
+</div>
+<div class="count-info" id="countInfo"></div>
+
+<div class="content">
+  <table>
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Название</th>
+        <th>Статус</th>
+        <th>ИНН</th>
+        <th>Телефоны</th>
+        <th>Email</th>
+        <th>Сайт</th>
+        <th>Источник</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<script>
+const DATA = [
+  {n:1,name:"Аванта (Малые строительные технологии)",status:"действующая",inn:"2309013175",phones:"+7 938 414-04-46, +7 861 233-46-36",email:"petrakova_aa@avnt.ru",site:"",src:"ФНС"},
+  {n:2,name:"Автограф (ПСК-3)",status:"ликвидирована",inn:"7718007446",phones:"+7 903 516-67-01, +7 499 348-19-45",email:"graf-buh@mail.ru",site:"",src:"ФНС"},
+  {n:3,name:"АвтоШиК",status:"действующая",inn:"3662236204",phones:"+7 919 235-69-35, +7 473 202-04-45",email:"",site:"",src:"ФНС"},
+  {n:4,name:"Агора, ООО",status:"ликвидирована",inn:"2308045449",phones:"+7 484 254-99-17",email:"",site:"",src:"ФНС"},
+  {n:5,name:"Акро-декор К",status:"ликвидирована",inn:"7617004537",phones:"+7 301 259-98-00, +7 341 224-23-13",email:"ask@euro-decor.ru",site:"",src:"ФНС"},
+  {n:6,name:"Альфапол",status:"действующая",inn:"9731136170",phones:"+7 911 950-02-82, +7 958 523-72-82",email:"ag@alfapol.ru",site:"",src:"ФНС"},
+  {n:7,name:"Анна",status:"ликвидирована",inn:"7716085985",phones:"+7 401 582-32-99",email:"",site:"",src:"ФНС"},
+  {n:8,name:"АО КПМГ",status:"ликвидирована",inn:"7716105039",phones:"",email:"",site:"",src:"ФНС"},
+  {n:9,name:"АО ПСС",status:"ликвидирована",inn:"7718061877",phones:"",email:"",site:"",src:"ФНС"},
+  {n:10,name:"Ардис",status:"ликвидирована",inn:"7710144610",phones:"+7 493 293-94-93",email:"hot@ardis-group.su",site:"",src:"ФНС"},
+  {n:11,name:"Артель",status:"ликвидирована",inn:"7718050730",phones:"+7 906 572-77-05, +7 471 412-13-08",email:"artel-oboyan@yandex.ru",site:"",src:"ФНС"},
+  {n:12,name:"АртЭкСтрой",status:"действующая",inn:"7715518308",phones:"+7 926 392-55-88",email:"",site:"",src:"ФНС"},
+  {n:13,name:"Архикамень",status:"действующая",inn:"7724220282",phones:"+7 495 240-50-66, +7 495 107-30-05",email:"ekaterina.suvorova1410@gmail.com",site:"",src:"ФНС"},
+  {n:14,name:"Ас-пол (Тикосстрой)",status:"действующая",inn:"583600004825",phones:"+7 495 109-02-37, +7 922 482-99-79",email:"polovik@polholl.com",site:"",src:"ФНС"},
+  {n:15,name:"Ассоциация ВЕРСИВО",status:"ликвидирована",inn:"6319050656",phones:"+7 495 708-42-23",email:"office@euat.ru",site:"",src:"ФНС"},
+  {n:16,name:"Астер-строй ООО ПКП",status:"действующая",inn:"6663077150",phones:"+7 953 040-20-88, +7 343 376-72-90",email:"rlt_aster@mail.ru",site:"",src:"ФНС"},
+  {n:17,name:"Атлант Кров",status:"ликвидирована",inn:"7717016381",phones:"",email:"",site:"",src:"ФНС"},
+  {n:18,name:"Белкам",status:"действующая",inn:"6670477520",phones:"",email:"",site:"",src:"ФНС"},
+  {n:19,name:"БЕЛОКАЛИТВИНСКИЙ ИЗВЕСТКОВЫЙ ЗАВОД",status:"ликвидирована",inn:"6142015733",phones:"",email:"",site:"",src:"ФНС"},
+  {n:20,name:"БЕРА #1",status:"действующая",inn:"5003163267",phones:"",email:"",site:"",src:"ФНС"},
+  {n:21,name:"Бергауф",status:"действующая",inn:"7720885381",phones:"",email:"",site:"",src:"ФНС"},
+  {n:22,name:"Болоховский завод сантехнических заготовок",status:"действующая",inn:"7128003449",phones:"",email:"",site:"",src:"ФНС"},
+  {n:23,name:"Бриз 2002",status:"ликвидирована",inn:"4707018698",phones:"",email:"",site:"",src:"ФНС"},
+  {n:24,name:"Вега-С",status:"действующая",inn:"5403334848",phones:"",email:"",site:"",src:"ФНС"},
+  {n:25,name:"Вега= Мастер СТ",status:"ликвидирована",inn:"7718024875",phones:"",email:"",site:"",src:"ФНС"},
+  {n:26,name:"Винея",status:"ликвидирована",inn:"4101034162",phones:"",email:"",site:"",src:"ФНС"},
+  {n:27,name:"Вито (Ледис престиж Хай Тек Трейдинг)",status:"ликвидирована",inn:"7720069633",phones:"",email:"",site:"",src:"ФНС"},
+  {n:28,name:"Гидрозащита",status:"действующая",inn:"2130231002",phones:"",email:"",site:"",src:"ФНС"},
+  {n:29,name:"ГИПСОПОЛИМЕР",status:"ликвидирована",inn:"7729275239",phones:"",email:"",site:"",src:"ФНС"},
+  {n:30,name:"Дарстрой",status:"действующая",inn:"7451255798",phones:"",email:"info@kamni.net",site:"kamni.net",src:"ФНС, сайт"},
+  {n:31,name:"ДВ Сибирь",status:"действующая",inn:"2222894384",phones:"",email:"",site:"",src:"ФНС"},
+  {n:32,name:"ДекАрт (Ассоциация ДА)",status:"ликвидирована",inn:"7813356197",phones:"",email:"",site:"",src:"ФНС"},
+  {n:33,name:"Дженбаев Р.Т.",status:"ликвидирована",inn:"7807000690",phones:"",email:"",site:"",src:"ФНС"},
+  {n:34,name:"Дон микс Шахты",status:"ликвидирована",inn:"6155043463",phones:"",email:"",site:"",src:"ФНС"},
+  {n:35,name:"Дон-Даксорол",status:"действующая",inn:"6165075506",phones:"",email:"",site:"",src:"ФНС"},
+  {n:36,name:"Драймикс",status:"действующая",inn:"6451424236",phones:"",email:"office@berghome.ru",site:"berghome.ru",src:"ФНС, сайт"},
+  {n:37,name:"Дубль-3",status:"ликвидирована",inn:"7729081459",phones:"",email:"",site:"",src:"ФНС"},
+  {n:38,name:"Европейский дом",status:"действующая",inn:"2315184764",phones:"",email:"",site:"",src:"ФНС"},
+  {n:39,name:"Завод Керамзитового Гравия, ОАО",status:"ликвидирована",inn:"5752021408",phones:"",email:"",site:"",src:"ФНС"},
+  {n:40,name:"Завод сухих строительных смесей Брозэкс",status:"действующая",inn:"6604011045",phones:"",email:"",site:"",src:"ФНС"},
+  {n:41,name:"ЗОФ (Зубцовская обойная фабрика)=ДС-Строй",status:"действующая",inn:"2366023726",phones:"",email:"",site:"",src:"ФНС"},
+  {n:42,name:"ЗСС АНКЕР",status:"ликвидирована",inn:"6686130900",phones:"",email:"",site:"",src:"ФНС"},
+  {n:43,name:"Известковые строительные смеси",status:"ликвидирована",inn:"7825422207",phones:"",email:"",site:"",src:"ФНС"},
+  {n:44,name:"ИнвестЕврострой",status:"действующая",inn:"7704699596",phones:"",email:"",site:"",src:"ФНС"},
+  {n:45,name:"Инженерный центр АС Теплострой",status:"действующая",inn:"7452041502",phones:"",email:"",site:"",src:"ФНС"},
+  {n:46,name:"Интерстрой-ФЭМ",status:"ликвидирована",inn:"7716186341",phones:"",email:"",site:"",src:"ФНС"},
+  {n:47,name:"ИП Айтов ООО ТИТАН ЛЮКС",status:"действующая",inn:"2618020123",phones:"",email:"",site:"",src:"ФНС"},
+  {n:48,name:"ИП Олин Вадим Юрьевич",status:"действующая",inn:"344403673803",phones:"",email:"",site:"",src:"ФНС"},
+  {n:49,name:"Ирмаст-Холдинг",status:"действующая",inn:"7712060323",phones:"",email:"",site:"",src:"ФНС"},
+  {n:50,name:"Кволити Продакшн",status:"ликвидирована",inn:"7703206720",phones:"",email:"",site:"",src:"ФНС"},
+  {n:51,name:"Комз-Экспорт (Тигарбо, ПТГ)",status:"действующая",inn:"6147017741",phones:"",email:"",site:"",src:"ФНС"},
+  {n:52,name:"Композит-XXI",status:"действующая",inn:"7701936739",phones:"",email:"",site:"",src:"ФНС"},
+  {n:53,name:"Консит-А",status:"ликвидирована",inn:"7724138944",phones:"",email:"",site:"",src:"ФНС"},
+  {n:54,name:"Константа-Девелопмент",status:"ликвидирована",inn:"7840448087",phones:"",email:"",site:"",src:"ФНС"},
+  {n:55,name:"Конхел",status:"ликвидирована",inn:"3628008335",phones:"",email:"",site:"",src:"ФНС"},
+  {n:56,name:"Корунд-Ф",status:"ликвидирована",inn:"7734588124",phones:"",email:"",site:"",src:"ФНС"},
+  {n:57,name:"Коттедж",status:"ликвидирована",inn:"7718051639",phones:"",email:"",site:"",src:"ФНС"},
+  {n:58,name:"Красный строитель",status:"ликвидирована",inn:"7726177603",phones:"",email:"",site:"",src:"ФНС"},
+  {n:59,name:"Кроз",status:"действующая",inn:"9717144683",phones:"",email:"",site:"",src:"ФНС"},
+  {n:60,name:"КСК Ржевский",status:"действующая",inn:"6914001512",phones:"",email:"",site:"",src:"ФНС"},
+  {n:61,name:"КСП-92",status:"действующая",inn:"9200028306",phones:"",email:"",site:"",src:"ФНС"},
+  {n:62,name:"Лаком Групп",status:"ликвидирована",inn:"5047035390",phones:"",email:"",site:"",src:"ФНС"},
+  {n:63,name:"Латом-Бис",status:"действующая",inn:"5070014535",phones:"",email:"",site:"",src:"ФНС"},
+  {n:64,name:"Лега",status:"ликвидирована",inn:"7725037811",phones:"",email:"",site:"",src:"ФНС"},
+  {n:65,name:"Лесторг, ООО=Совтехстрой",status:"ликвидирована",inn:"7804078987",phones:"",email:"",site:"",src:"ФНС"},
+  {n:66,name:"Магнитострой",status:"действующая",inn:"7444049466",phones:"",email:"",site:"",src:"ФНС"},
+  {n:67,name:"Макаров О.Н.",status:"ликвидирована",inn:"2320023900",phones:"",email:"",site:"",src:"ФНС"},
+  {n:68,name:"Максастрой",status:"ликвидирована",inn:"7725571205",phones:"",email:"",site:"",src:"ФНС"},
+  {n:69,name:"Мастер Строй",status:"ликвидирована",inn:"7714742829",phones:"",email:"",site:"",src:"ФНС"},
+  {n:70,name:"МЕЛСТРОМ, ОАО",status:"ликвидирована",inn:"3102008614",phones:"",email:"",site:"",src:"ФНС"},
+  {n:71,name:"Можгинское строительное объединение",status:"действующая",inn:"1830000270",phones:"",email:"",site:"",src:"ФНС"},
+  {n:72,name:"Монолит-СС",status:"ликвидирована",inn:"6367045977",phones:"",email:"",site:"",src:"ФНС"},
+  {n:73,name:"Мэзасбыт (Доккрас)",status:"ликвидирована",inn:"7709248999",phones:"",email:"",site:"",src:"ФНС"},
+  {n:74,name:"Новый Век (Бастион)",status:"ликвидирована",inn:"7725041800",phones:"",email:"",site:"",src:"ФНС"},
+  {n:75,name:"ООО АСГАРД",status:"действующая",inn:"9722030233",phones:"",email:"",site:"",src:"ФНС"},
+  {n:76,name:"ООО ВЕКТОР",status:"ликвидирована",inn:"7710124469",phones:"",email:"",site:"akrodekor-k.by.ru",src:"ФНС"},
+  {n:77,name:"ООо ГОРДЕН",status:"действующая",inn:"7447298848",phones:"",email:"",site:"dry-works.irk.ru",src:"ФНС"},
+  {n:78,name:"ООО Гренцебах БСХ ГмбХ",status:"действующая",inn:"7727649376",phones:"",email:"",site:"",src:"ФНС"},
+  {n:79,name:'ООО "ЕВРОМИКС"',status:"действующая",inn:"7730064289",phones:"+7(912) 246-96-80",email:"info@hydroteks.ru, msk@hydroteks.ru",site:"hydroteks.ru",src:"ФНС, сайт"},
+  {n:80,name:'ООО "ЗАВОД ЭНЕРГОБЕТОН"',status:"действующая",inn:"5905300641",phones:"",email:"",site:"",src:"ФНС"},
+  {n:81,name:'ООО "ПРЕДПРИЯТИЕ ВГТ"',status:"ликвидирована",inn:"5032009125",phones:"",email:"",site:"",src:"ФНС"},
+  {n:82,name:'ООО "ТД АКРОДЕКОР-К"',status:"ликвидирована",inn:"2463051567",phones:"",email:"",site:"",src:"ФНС"},
+  {n:83,name:'ООО "ТИБЕТ"',status:"ликвидирована",inn:"0805002709",phones:"",email:"",site:"",src:"ФНС"},
+  {n:84,name:'ООО "УРАЛ-ГИПС"',status:"действующая",inn:"5903111198",phones:"",email:"uralgips@inbox.ru, ural-gips@mail.ru",site:"ural-gips.ru",src:"ФНС, сайт"},
+  {n:85,name:"ООО Сил Бет / ОАО АКСТРИМ",status:"действующая",inn:"2540207003",phones:"",email:"",site:"akstrim.ru",src:"ФНС"},
+  {n:86,name:"ООО ЕСМ",status:"действующая",inn:"9718152944",phones:"",email:"",site:"",src:"ФНС"},
+  {n:87,name:'ООО ЗАВОД "ДИОЛА"',status:"действующая",inn:"5404023637",phones:"",email:"info@diola.ru, expert@diola.ru",site:"diola.ru",src:"ФНС, сайт"},
+  {n:88,name:"ООО Лига",status:"ликвидирована",inn:"7710113040",phones:"",email:"",site:"",src:"ФНС"},
+  {n:89,name:"ООО ПАЛЬМИРА",status:"ликвидирована",inn:"7716101010",phones:"",email:"",site:"",src:"ФНС"},
+  {n:90,name:'ООО ПКК "АРКО-МС"',status:"ликвидирована",inn:"4348035088",phones:"",email:"",site:"",src:"ФНС"},
+  {n:91,name:"ООО ПКФ",status:"ликвидирована",inn:"7710115270",phones:"",email:"",site:"",src:"ФНС"},
+  {n:92,name:"Оптовый центр (Соколов Е.В.)",status:"ликвидирована",inn:"7825114562",phones:"",email:"",site:"",src:"ФНС"},
+  {n:93,name:"Оргтехника",status:"ликвидирована",inn:"7713089780",phones:"",email:"",site:"",src:"ФНС"},
+  {n:94,name:"Орловский гипсовый комбинат",status:"ликвидирована",inn:"5751006196",phones:"",email:"",site:"",src:"ФНС"},
+  {n:95,name:"Патит",status:"действующая",inn:"6161042002",phones:"",email:"",site:"",src:"ФНС"},
+  {n:96,name:"ПБОЮЛ Андреев А.А.",status:"ликвидирована",inn:"5425109170",phones:"",email:"",site:"",src:"ФНС"},
+  {n:97,name:"ПГУПС (он же Ника)",status:"действующая",inn:"7838095532",phones:"",email:"",site:"",src:"ФНС"},
+  {n:98,name:"Пешеланский гипсовый",status:"действующая",inn:"5202002458",phones:"+7 917 570-17-46",email:"pgz@pgz-dekor.ru, sales@pgz-dekor.ru",site:"pgz-dekor.ru",src:"ФНС, сайт"},
+  {n:99,name:"ПЕШЕЛАНЬСКИЙ ГИПСОВЫЙ ЗАВОД ДЕКОР-1",status:"действующая",inn:"5202008770",phones:"",email:"",site:"",src:"ФНС"},
+  {n:100,name:"Пирамида-А",status:"ликвидирована",inn:"5262095464",phones:"",email:"",site:"",src:"ФНС"},
+  {n:101,name:"Победит",status:"действующая",inn:"1501000010",phones:"",email:"",site:"",src:"ФНС"},
+  {n:102,name:"Полимерстрой (Белгород)",status:"ликвидирована",inn:"7710133030",phones:"",email:"",site:"",src:"ФНС"},
+  {n:103,name:"Полиэксцентр-М",status:"ликвидирована",inn:"2319000418",phones:"",email:"",site:"",src:"ФНС"},
+  {n:104,name:"ПП Крепс",status:"ликвидирована",inn:"7724239300",phones:"",email:"",site:"",src:"ФНС"},
+  {n:105,name:"Прайд (Колибри)",status:"ликвидирована",inn:"7720090917",phones:"",email:"",site:"",src:"ФНС"},
+  {n:106,name:"Предприятие отделочных материалов",status:"действующая",inn:"5403100416",phones:"",email:"",site:"",src:"ФНС"},
+  {n:107,name:"Премьера Плюс",status:"ликвидирована",inn:"7838312032",phones:"",email:"",site:"",src:"ФНС"},
+  {n:108,name:"Престиж С",status:"ликвидирована",inn:"7734238031",phones:"",email:"",site:"",src:"ФНС"},
+  {n:109,name:"Проф-цемент (Ордос 2000)",status:"ликвидирована",inn:"7718029993",phones:"",email:"",site:"",src:"ФНС"},
+  {n:110,name:"Рекорд",status:"ликвидирована",inn:"7710138736",phones:"",email:"",site:"",src:"ФНС"},
+  {n:111,name:"РосСтройМикс = миллениум 2",status:"ликвидирована",inn:"6168046084",phones:"",email:"",site:"",src:"ФНС"},
+  {n:112,name:"Русиан",status:"действующая",inn:"0105047736",phones:"",email:"",site:"",src:"ФНС"},
+  {n:113,name:"РУСЛЮКС",status:"ликвидирована",inn:"7704003650",phones:"",email:"",site:"",src:"ФНС"},
+  {n:114,name:"Русстройтех",status:"действующая",inn:"9724036520",phones:"",email:"",site:"",src:"ФНС"},
+  {n:115,name:"С.К.Р",status:"ликвидирована",inn:"5190005123",phones:"",email:"",site:"",src:"ФНС"},
+  {n:116,name:"Саратовский завод ССС",status:"ликвидирована",inn:"6450002591",phones:"",email:"",site:"",src:"ФНС"},
+  {n:117,name:"Сартэксим",status:"действующая",inn:"6454046085",phones:"",email:"",site:"",src:"ФНС"},
+  {n:118,name:"Свердловский завод гипсовых изделий",status:"действующая",inn:"6659004872",phones:"",email:"",site:"",src:"ФНС"},
+  {n:119,name:"Сибирская Цементная Компания (Мастер Класс)",status:"действующая",inn:"5446011062",phones:"",email:"",site:"",src:"ФНС"},
+  {n:120,name:"СП Билдинг Технолоджи (Ташкент)",status:"ликвидирована",inn:"5507000367",phones:"",email:"",site:"",src:"ФНС"},
+  {n:121,name:"СОДА",status:"действующая",inn:"6316208302",phones:"",email:"",site:"",src:"ФНС"},
+  {n:122,name:"Сократ (ООО Дженесс Хаус)",status:"ликвидирована",inn:"7441001522",phones:"",email:"",site:"",src:"ФНС"},
+  {n:123,name:"Спецоргстрой",status:"действующая",inn:"3435112266",phones:"",email:"",site:"",src:"ФНС"},
+  {n:124,name:"Спецстройсмеси",status:"ликвидирована",inn:"5044027873",phones:"",email:"",site:"",src:"ФНС"},
+  {n:125,name:"Старатель и К",status:"действующая",inn:"7723135676",phones:"",email:"",site:"",src:"ФНС"},
+  {n:126,name:"Строительный двор=АССО-СТРОЙ",status:"действующая",inn:"9714031730",phones:"",email:"",site:"",src:"ФНС"},
+  {n:127,name:"Стройинструмент",status:"ликвидирована",inn:"7701327504",phones:"",email:"",site:"",src:"ФНС"},
+  {n:128,name:"Стройкомплекс ЛКЗ",status:"ликвидирована",inn:"7731039013",phones:"",email:"",site:"",src:"ФНС"},
+  {n:129,name:"Стройматериалы",status:"ликвидирована",inn:"7726011132",phones:"",email:"",site:"",src:"ФНС"},
+  {n:130,name:"Стройснаб",status:"ликвидирована",inn:"2311244194",phones:"",email:"",site:"",src:"ФНС"},
+  {n:131,name:"Стройэконом=Фобос-А",status:"действующая",inn:"4003015556",phones:"",email:"",site:"",src:"ФНС"},
+  {n:132,name:"Стромикс",status:"действующая",inn:"5259156999",phones:"",email:"",site:"",src:"ФНС"},
+  {n:133,name:"Сухие строительные смеси (ТЕКТО)",status:"действующая",inn:"7737111530",phones:"",email:"",site:"",src:"ФНС"},
+  {n:134,name:"ТАВДИНСКИЙ ГИДРОЛИЗНЫЙ ЗАВОД",status:"ликвидирована",inn:"6634000139",phones:"",email:"",site:"",src:"ФНС"},
+  {n:135,name:"ТД Тиса",status:"ликвидирована",inn:"1101145727",phones:"",email:"",site:"",src:"ФНС"},
+  {n:136,name:"Темпора",status:"действующая",inn:"3459075292",phones:"",email:"",site:"",src:"ФНС"},
+  {n:137,name:"Террако",status:"ликвидирована",inn:"7735085892",phones:"",email:"",site:"",src:"ФНС"},
+  {n:138,name:"Техсервисвермикулит",status:"действующая",inn:"7453004126",phones:"",email:"",site:"",src:"ФНС"},
+  {n:139,name:"Топаз плюс",status:"ликвидирована",inn:"3662043918",phones:"",email:"",site:"",src:"ФНС"},
+  {n:140,name:"Торговый дом Текс",status:"ликвидирована",inn:"7713097407",phones:"",email:"",site:"",src:"ФНС"},
+  {n:141,name:"Тулаоргтехстрой",status:"действующая",inn:"7104003048",phones:"",email:"",site:"",src:"ФНС"},
+  {n:142,name:"ТУЛЬСКИЙ ГОРНО-ХИМИЧЕСКИЙ ЗАВОД",status:"действующая",inn:"5005059568",phones:"",email:"",site:"",src:"ФНС"},
+  {n:143,name:"Фирма Арагон Лтд",status:"ликвидирована",inn:"7701183394",phones:"",email:"",site:"",src:"ФНС"},
+  {n:144,name:"Фирма ВЕФТ",status:"действующая",inn:"5054000648",phones:"",email:"",site:"",src:"ФНС"},
+  {n:145,name:"ХимСтройСмесь=Фарвест",status:"ликвидирована",inn:"7709296992",phones:"",email:"",site:"",src:"ФНС"},
+  {n:146,name:"Химэкс-Люкс",status:"ликвидирована",inn:"0275035946",phones:"",email:"",site:"",src:"ФНС"},
+  {n:147,name:"Центр Механохимических Технологий",status:"ликвидирована",inn:"7709286715",phones:"",email:"",site:"",src:"ФНС"},
+  {n:148,name:"Шебекинский ремонтник",status:"ликвидирована",inn:"3120006200",phones:"",email:"",site:"",src:"ФНС"},
+  {n:149,name:"Элаи",status:"ликвидирована",inn:"7711005601",phones:"",email:"",site:"",src:"ФНС"},
+  {n:150,name:"ЭЛВЕЙС (Большаков)",status:"ликвидирована",inn:"7703270170",phones:"",email:"",site:"",src:"ФНС"},
+  {n:151,name:"Эрдистроймаш",status:"ликвидирована",inn:"7701196650",phones:"",email:"",site:"",src:"ФНС"},
+  // Производители (27)
+  {n:152,name:"Knauf (Кнауф)",status:"действующая",inn:"5249071792",phones:"",email:"",site:"knauf.ru",src:"ФНС",mfg:true},
+  {n:153,name:"Ceresit (Henkel)",status:"действующая",inn:"7719747852",phones:"",email:"",site:"ceresit.ru",src:"ФНС",mfg:true},
+  {n:154,name:"Weber (Saint-Gobain)",status:"действующая",inn:"5011020537",phones:"+7(910) 790-60-61, +7 499 455-61-45",email:"",site:"weber-vetonit.ru",src:"ФНС, сайт",mfg:true},
+  {n:155,name:"Bergauf",status:"действующая",inn:"7720885381",phones:"",email:"Kadr@bergauf.ru, e.rycheva@bergauf.ru, k.demina@bergauf.ru",site:"bergauf.ru",src:"ФНС, сайт",mfg:true},
+  {n:156,name:"Старатели",status:"ликвидирована",inn:"7720087350",phones:"",email:"",site:"starateli.com",src:"ФНС",mfg:true},
+  {n:157,name:"Основит",status:"ликвидирована",inn:"5038183659",phones:"",email:"",site:"osnovit.ru",src:"ФНС",mfg:true},
+  {n:158,name:"Юнис",status:"ликвидирована",inn:"7717055172",phones:"",email:"",site:"unis.ru",src:"ФНС",mfg:true},
+  {n:159,name:"Плитонит",status:"ликвидирована",inn:"7714951364",phones:"",email:"",site:"plitonit.ru",src:"ФНС",mfg:true},
+  {n:160,name:"Litokol",status:"действующая",inn:"9709117615",phones:"",email:"litokol@litokol.ru, sale@litokol-market.ru",site:"litokol.ru",src:"ФНС, сайт",mfg:true},
+  {n:161,name:"Брозекс",status:"ликвидирована",inn:"7717011471",phones:"",email:"",site:"brozex.ru",src:"ФНС",mfg:true},
+  {n:162,name:"Волма",status:"ликвидирована",inn:"7810365838",phones:"",email:"",site:"volma.ru",src:"ФНС",mfg:true},
+  {n:163,name:"Геркулес",status:"действующая",inn:"5408156204",phones:"",email:"",site:"gerkules.info",src:"ФНС",mfg:true},
+  {n:164,name:"Глимс",status:"действующая",inn:"7728127012",phones:"",email:"zakaz@glims.ru",site:"glims.ru",src:"ФНС, сайт",mfg:true},
+  {n:165,name:"ЕК Кемикал",status:"ликвидирована",inn:"5260066034",phones:"",email:"",site:"ek-kemical.ru",src:"ФНС",mfg:true},
+  {n:166,name:"IV SIL",status:"действующая",inn:"5027118880",phones:"",email:"contact@ivsil.ru",site:"ivsil.ru",src:"ФНС, сайт",mfg:true},
+  {n:167,name:"Mapei",status:"действующая",inn:"5040059680",phones:"",email:"",site:"mapei.ru",src:"ФНС",mfg:true},
+  {n:168,name:"Sika",status:"ликвидирована",inn:"7723090104",phones:"",email:"",site:"rus.sika.com",src:"ФНС",mfg:true},
+  {n:169,name:"Ardex",status:"ликвидирована",inn:"7720102584",phones:"",email:"",site:"ardex.ru",src:"ФНС",mfg:true},
+  {n:170,name:"ХИМСТАБ",status:"действующая",inn:"7715361819",phones:"",email:"info@himstab.ru, salestab@himstab.ru, sale@himstab.ru",site:"himstab.ru",src:"ФНС, сайт",mfg:true},
+  {n:171,name:"КРАТА (Пигмент)",status:"ликвидирована",inn:"7717078966",phones:"",email:"",site:"krata.ru",src:"ФНС",mfg:true},
+  {n:172,name:"Полипласт",status:"действующая",inn:"7116019123",phones:"",email:"",site:"polyplast-un.ru",src:"ФНС",mfg:true},
+  {n:173,name:"CEMMIX",status:"действующая",inn:"7726670760",phones:"",email:"koordinator@cemmix.ru, info@cemmix.ru, zakup2@cemmix.ru",site:"cemmix.ru",src:"ФНС, сайт",mfg:true},
+  {n:174,name:"ГК ЕТС",status:"действующая",inn:"5024248200",phones:"",email:"",site:"utsrus.com",src:"ФНС",mfg:true},
+  {n:175,name:"Афива",status:"действующая",inn:"7706421476",phones:"+7 495 419-11-40",email:"afiva@afiva.ru",site:"afiva.ru",src:"ФНС, сайт",mfg:true},
+  {n:176,name:"НД-Техник",status:"действующая",inn:"7701229659",phones:"",email:"sales@nd-t.ru",site:"nd-t.pro",src:"ФНС, сайт",mfg:true},
+  {n:177,name:"БИРСС",status:"ликвидирована",inn:"7726539540",phones:"",email:"",site:"birss.ru",src:"ФНС",mfg:true},
+  {n:178,name:"БИПОЛЬ",status:"ликвидирована",inn:"7731206602",phones:"",email:"",site:"bipol.ru",src:"ФНС",mfg:true},
+];
+
+let currentTab = 'all';
+
+function renderStats() {
+  const active = DATA.filter(d => d.status === 'действующая').length;
+  const liq = DATA.filter(d => d.status === 'ликвидирована').length;
+  const withPhone = DATA.filter(d => d.phones).length;
+  const withEmail = DATA.filter(d => d.email).length;
+  const withSite = DATA.filter(d => d.site).length;
+  
+  document.getElementById('stats').innerHTML = `
+    <div class="stat-card green"><div class="num">${active}</div><div class="label">🟢 Действующих</div></div>
+    <div class="stat-card red"><div class="num">${liq}</div><div class="label">🔴 Ликвидированных</div></div>
+    <div class="stat-card blue"><div class="num">${DATA.length}</div><div class="label">Всего записей</div></div>
+    <div class="stat-card orange"><div class="num">${withPhone}</div><div class="label">📞 С телефонами</div></div>
+    <div class="stat-card orange"><div class="num">${withEmail}</div><div class="label">📧 С email</div></div>
+    <div class="stat-card blue"><div class="num">${withSite}</div><div class="label">🌐 С сайтами</div></div>
+  `;
+}
+
+function getFilteredData() {
+  const search = document.getElementById('search').value.toLowerCase();
+  const statusF = document.getElementById('statusFilter').value;
+  
+  return DATA.filter(d => {
+    if (currentTab === 'active' && d.status !== 'действующая') return false;
+    if (currentTab === 'liquidated' && d.status !== 'ликвидирована') return false;
+    if (currentTab === 'contacts' && !d.phones && !d.email) return false;
+    if (currentTab === 'mfg' && !d.mfg) return false;
+    if (statusF && d.status !== statusF) return false;
+    if (search) {
+      const s = `${d.name} ${d.inn} ${d.email} ${d.site} ${d.phones}`.toLowerCase();
+      if (!s.includes(search)) return false;
+    }
+    return true;
+  });
+}
+
+function renderTable() {
+  const filtered = getFilteredData();
+  const tbody = document.getElementById('tbody');
+  
+  document.getElementById('countInfo').textContent = `Показано: ${filtered.length} из ${DATA.length}`;
+  
+  tbody.innerHTML = filtered.map(d => {
+    const statusClass = d.status === 'действующая' ? 'status-active' : 'status-liquidated';
+    const statusText = d.status === 'действующая' ? '🟢 Действующая' : '🔴 Ликвидирована';
+    const siteLink = d.site ? `<a href="https://${d.site.replace(/^https?:\/\//,'')}" target="_blank">${d.site}</a>` : '—';
+    const emailLinks = d.email ? d.email.split(',').map(e => `<a href="mailto:${e.trim()}">${e.trim()}</a>`).join(', ') : '—';
+    
+    return `<tr>
+      <td>${d.n}</td>
+      <td><strong>${d.name}</strong>${d.mfg ? ' <span class="badge">🏭 производитель</span>' : ''}</td>
+      <td><span class="${statusClass}">${statusText}</span></td>
+      <td style="font-family:monospace;font-size:12px">${d.inn || '—'}</td>
+      <td style="font-size:12px">${d.phones || '—'}</td>
+      <td style="font-size:12px">${emailLinks}</td>
+      <td style="font-size:12px">${siteLink}</td>
+      <td style="font-size:11px">${d.src}</td>
+    </tr>`;
+  }).join('');
+}
+
+function showTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  renderTable();
+}
+
+function filterTable() { renderTable(); }
+function resetFilters() {
+  document.getElementById('search').value = '';
+  document.getElementById('statusFilter').value = '';
+  currentTab = 'all';
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.tab').classList.add('active');
+  renderTable();
+}
+
+renderStats();
+renderTable();
+</script>
+</body>
+</html>
