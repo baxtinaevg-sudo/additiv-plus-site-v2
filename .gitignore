@@ -5,6 +5,20 @@
 *.pdf
 *.jpg
 
+# Secrets — NEVER commit
+secrets.json
+
+# Business data — private
+*.xlsx
+*.xls
+
+# Temp files
+~$*
+*.tmp
+
+# OCR language packs (large)
+*.traineddata
+
 # OS
 .DS_Store
 Thumbs.db
