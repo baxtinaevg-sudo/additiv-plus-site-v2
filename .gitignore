@@ -25,6 +25,30 @@ Thumbs.db
 
 # Node
 node_modules/
+pnpm-lock.yaml
 
 # Logs
 *.log
+
+# Build output
+dist/
+
+# CRM data — contains personal/commercial info
+crm/src/data/*.json
+
+# AI tool configs — not needed in repo
+.claude/
+.agent/
+.agents/
+.obsidian/
+
+# Verification/temp scripts and results
+verify_*.js
+verify_*.json
+verify_*.txt
+search_results*.txt
+ocr_pdf*.js
+pdf2_ocr_*
+
+# Deployment copies
+amvera-deploy/
