@@ -32,6 +32,7 @@ pnpm-lock.yaml
 
 # Build output
 dist/
+*/dist/
 
 # CRM data — contains personal/commercial info
 crm/src/data/*.json
