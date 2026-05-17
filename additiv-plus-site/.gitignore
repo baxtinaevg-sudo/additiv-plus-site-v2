@@ -1,4 +1,30 @@
-node_modules
-dist
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment & secrets — NEVER commit
+.env
+.env.*
+secrets.json
+
+# Business data — private
+*.xlsx
+*.xls
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Editor
 *.local
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Logs
+*.log
+
+# OCR language packs (large)
+*.traineddata

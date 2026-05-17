@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "site": "vite --config additiv-plus-site/vite.config.mjs",
+    "site:build": "vite build --config additiv-plus-site/vite.config.mjs",
     "crm": "vite --config crm/vite.config.js",
     "crm:build": "vite build --config crm/vite.config.js"
   },
