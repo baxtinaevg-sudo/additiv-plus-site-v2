@@ -15,6 +15,8 @@
 | [`voice/vocabulary.md`](voice/vocabulary.md) | Словарь — термины, обороты, которые я использую |
 | [`voice/stop-words.md`](voice/stop-words.md) | Стоп-слова — фразы и слова, которые я не использую |
 | [`thinking/mental-models.md`](thinking/mental-models.md) | Ментальные модели — как я принимаю решения |
+| [`thinking/research-first.md`](thinking/research-first.md) | Ресерч перед кодом — модель Research → Plan → Code |
+| [`thinking/orchestrator-method.md`](thinking/orchestrator-method.md) | Метод оркестратора — экономия токенов через декомпозицию задач |
 | [`principles/product.md`](principles/product.md) | Принципы работы с продуктом |
 | [`principles/code.md`](principles/code.md) | Принципы написания кода |
 | [`principles/business.md`](principles/business.md) | Бизнес-принципы |

@@ -12,6 +12,8 @@ secrets.json
 
 # Business data — private (contains contacts, deals, personal info)
 src/data/*.json
+# Exception: anonymized demo data is safe for git
+!src/data/*.demo.json
 
 # OS
 .DS_Store

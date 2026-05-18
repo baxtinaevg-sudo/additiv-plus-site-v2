@@ -1,0 +1,196 @@
+[
+  {
+    "id": "c1",
+    "name": "ООО «Кнауф Гипс»",
+    "inn": "5036035230",
+    "direction": "ССС",
+    "status": "active",
+    "city": "Москва",
+    "website": "knauf.ru",
+    "managerId": "u2",
+    "contacts": [
+      { "name": "Сергей В.", "position": "Начальник закупок", "phone": "+7 (XXX) XXX-XX-XX", "email": "s.v@demo.ru" },
+      { "name": "Анна Л.", "position": "Технический директор", "phone": "+7 (XXX) XXX-XX-XX", "email": "a.l@demo.ru" }
+    ],
+    "notes": "Крупнейший производитель сухих строительных смесей в России. Заинтересованы в импортозамещении европейских добавок.",
+    "createdAt": "2026-01-15",
+    "tags": ["VIP", "ССС", "импортозамещение"]
+  },
+  {
+    "id": "c2",
+    "name": "ООО «Старатели»",
+    "inn": "5010032233",
+    "direction": "ССС",
+    "status": "active",
+    "city": "Дзержинский",
+    "website": "starateli.ru",
+    "managerId": "u2",
+    "contacts": [
+      { "name": "Игорь М.", "position": "Руководитель отдела снабжения", "phone": "+7 (XXX) XXX-XX-XX", "email": "i.m@demo.ru" }
+    ],
+    "notes": "Отечественный производитель ССС. Активно развивают линейку продуктов. Требуются добавки для шпаклёвок и плиточных клеёв.",
+    "createdAt": "2026-02-01",
+    "tags": ["ССС", "шпаклёвки", "плиточный клей"]
+  },
+  {
+    "id": "c3",
+    "name": "ООО «Юнис»",
+    "inn": "7720357891",
+    "direction": "ССС",
+    "status": "active",
+    "city": "Москва",
+    "website": "unis.ru",
+    "managerId": "u3",
+    "contacts": [
+      { "name": "Павел Г.", "position": "Директор по развитию", "phone": "+7 (XXX) XXX-XX-XX", "email": "p.g@demo.ru" },
+      { "name": "Татьяна Б.", "position": "Технолог", "phone": "+7 (XXX) XXX-XX-XX", "email": "t.b@demo.ru" }
+    ],
+    "notes": "Один из лидеров рынка ССС. Интересуют суперпластификаторы и гидрофобизаторы.",
+    "createdAt": "2026-01-20",
+    "tags": ["ССС", "суперпластификаторы"]
+  },
+  {
+    "id": "c4",
+    "name": "ООО «Основит»",
+    "inn": "7709786543",
+    "direction": "ССС",
+    "status": "negotiation",
+    "city": "Москва",
+    "website": "osnovit.ru",
+    "managerId": "u3",
+    "contacts": [
+      { "name": "Виктор С.", "position": "Менеджер по закупкам", "phone": "+7 (XXX) XXX-XX-XX", "email": "v.s@demo.ru" }
+    ],
+    "notes": "Ведём переговоры о поставке эфиров целлюлозы. Запросили образцы для тестирования.",
+    "createdAt": "2026-03-05",
+    "tags": ["ССС", "эфиры целлюлозы", "образцы"]
+  },
+  {
+    "id": "c5",
+    "name": "ОАО «Славянск»",
+    "inn": "2310034567",
+    "direction": "ССС",
+    "status": "active",
+    "city": "Краснодар",
+    "website": "slavyansk-cement.ru",
+    "managerId": "u2",
+    "contacts": [
+      { "name": "Николай Ч.", "position": "Гл. инженер", "phone": "+7 (XXX) XXX-XX-XX", "email": "n.c@demo.ru" }
+    ],
+    "notes": "Производитель цемента и сухих смесей. Южный регион. Нужны добавки для бетона.",
+    "createdAt": "2026-02-15",
+    "tags": ["ССС", "цемент", "бетон"]
+  },
+  {
+    "id": "c6",
+    "name": "ООО «Вебер-Ветонит»",
+    "inn": "7704321098",
+    "direction": "ССС",
+    "status": "lead",
+    "city": "Москва",
+    "website": "weber-vetonit.ru",
+    "managerId": "u3",
+    "contacts": [
+      { "name": "Марина К.", "position": "Нач. отдела качества", "phone": "+7 (XXX) XXX-XX-XX", "email": "m.k@demo.ru" }
+    ],
+    "notes": "Дочерняя компания Saint-Gobain. Потенциальный крупный клиент. Ищут замену европейским добавкам.",
+    "createdAt": "2026-04-01",
+    "tags": ["ССС", "импортозамещение", "перспективный"]
+  },
+  {
+    "id": "c7",
+    "name": "ООО «ЛКМ-Пром»",
+    "inn": "7810567890",
+    "direction": "ЛКМ",
+    "status": "active",
+    "city": "Санкт-Петербург",
+    "website": "lkm-prom.ru",
+    "managerId": "u2",
+    "contacts": [
+      { "name": "Александр Ф.", "position": "Технический директор", "phone": "+7 (XXX) XXX-XX-XX", "email": "a.f@demo.ru" }
+    ],
+    "notes": "Производитель лакокрасочных материалов. Нужны диспергаторы и загустители.",
+    "createdAt": "2026-03-10",
+    "tags": ["ЛКМ", "диспергаторы"]
+  },
+  {
+    "id": "c8",
+    "name": "ЗАО «Полипласт»",
+    "inn": "7721678901",
+    "direction": "Пластмассы",
+    "status": "lead",
+    "city": "Москва",
+    "website": "polyplast.ru",
+    "managerId": "u3",
+    "contacts": [
+      { "name": "Роман А.", "position": "Директор", "phone": "+7 (XXX) XXX-XX-XX", "email": "r.a@demo.ru" }
+    ],
+    "notes": "Производитель полимерных изделий. Интересуют добавки для ПВХ и полипропилена.",
+    "createdAt": "2026-04-15",
+    "tags": ["Пластмассы", "ПВХ"]
+  },
+  {
+    "id": "c9",
+    "name": "ООО «Максит Групп»",
+    "inn": "7703987654",
+    "direction": "ССС",
+    "status": "active",
+    "city": "Москва",
+    "website": "maxit.ru",
+    "managerId": "u2",
+    "contacts": [
+      { "name": "Олег В.", "position": "Менеджер по развитию", "phone": "+7 (XXX) XXX-XX-XX", "email": "o.v@demo.ru" }
+    ],
+    "notes": "Производитель фасадных и теплоизоляционных систем. Стабильные закупки.",
+    "createdAt": "2026-01-25",
+    "tags": ["ССС", "фасад", "теплоизоляция"]
+  },
+  {
+    "id": "c10",
+    "name": "ООО «Балтимикс»",
+    "inn": "7805123456",
+    "direction": "ССС",
+    "status": "negotiation",
+    "city": "Санкт-Петербург",
+    "website": "baltimix.ru",
+    "managerId": "u3",
+    "contacts": [
+      { "name": "Дмитрий О.", "position": "Гл. технолог", "phone": "+7 (XXX) XXX-XX-XX", "email": "d.o@demo.ru" }
+    ],
+    "notes": "Производитель строительных смесей из СПб. Тестируют наши пластификаторы.",
+    "createdAt": "2026-03-20",
+    "tags": ["ССС", "пластификаторы", "тестирование"]
+  },
+  {
+    "id": "c11",
+    "name": "ООО «Крепс»",
+    "inn": "7702345678",
+    "direction": "ССС",
+    "status": "lost",
+    "city": "Казань",
+    "website": "kreps.ru",
+    "managerId": "u2",
+    "contacts": [
+      { "name": "Ильдар Х.", "position": "Нач. производства", "phone": "+7 (XXX) XXX-XX-XX", "email": "i.k@demo.ru" }
+    ],
+    "notes": "Ушли к конкуренту из-за цены. Возможен возврат при улучшении условий.",
+    "createdAt": "2025-11-10",
+    "tags": ["ССС", "потерян", "цена"]
+  },
+  {
+    "id": "c12",
+    "name": "ООО «Каучук-Трейд»",
+    "inn": "7715678901",
+    "direction": "Каучук",
+    "status": "lead",
+    "city": "Воронеж",
+    "website": "kauchuk-trade.ru",
+    "managerId": "u3",
+    "contacts": [
+      { "name": "Валерий М.", "position": "Коммерческий директор", "phone": "+7 (XXX) XXX-XX-XX", "email": "v.m@demo.ru" }
+    ],
+    "notes": "Новый лид с выставки. Интересуют ускорители вулканизации.",
+    "createdAt": "2026-05-01",
+    "tags": ["Каучук", "выставка", "новый"]
+  }
+]
