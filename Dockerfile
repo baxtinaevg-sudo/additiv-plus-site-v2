@@ -8,6 +8,6 @@ RUN npm run site:build
 
 FROM nginx:alpine
 COPY --from=build /app/additiv-plus-site/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY additiv-plus-site/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
