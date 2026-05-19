@@ -1,10 +1,10 @@
 FROM node:20-alpine AS build
-WORKDIR /app
-COPY package*.json ./
+WORKDIR /app/additiv-plus-site
+COPY additiv-plus-site/package*.json ./
 RUN npm ci
-COPY . .
+COPY additiv-plus-site/ ./
 ENV NODE_ENV=production
-RUN npm run site:build
+RUN npm run build
 
 FROM nginx:alpine
 COPY --from=build /app/additiv-plus-site/dist /usr/share/nginx/html
