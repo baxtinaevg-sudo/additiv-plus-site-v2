@@ -1,24 +1,26 @@
 <template>
-  <div class="min-h-screen bg-beige flex">
+  <div class="min-h-screen bg-white flex">
     <!-- Sidebar -->
     <aside
       :class="[
-        'bg-graphite text-white flex flex-col transition-all duration-300 z-30',
+        'bg-white border-r border-crm-border flex flex-col transition-all duration-300 z-30',
         collapsed ? 'w-[72px]' : 'w-[260px]',
-        'fixed lg:relative h-screen',
+        'fixed lg:relative h-screen shadow-sm lg:shadow-none',
         mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       ]"
     >
       <!-- Logo -->
-      <div class="h-16 flex items-center px-5 border-b border-white/10">
+      <div class="h-16 flex items-center px-4 border-b border-crm-border">
         <div class="flex items-center gap-3 overflow-hidden">
-          <div class="w-9 h-9 rounded-lg bg-champagne/20 flex items-center justify-center text-champagne font-display font-bold text-lg shrink-0">
-            А
-          </div>
+          <img
+            src="/logo.png"
+            alt="Аддитив Плюс"
+            class="w-9 h-9 rounded-lg object-contain shrink-0"
+          />
           <transition name="fade">
             <div v-if="!collapsed" class="whitespace-nowrap">
-              <div class="font-display text-sm font-semibold">Аддитив Плюс</div>
-              <div class="text-[10px] text-white/40">CRM-система</div>
+              <div class="font-display text-sm font-semibold text-graphite">Аддитив Плюс</div>
+              <div class="text-[10px] text-champagne-dark font-medium tracking-wide uppercase">CRM-каталог</div>
             </div>
           </transition>
         </div>
@@ -32,13 +34,17 @@
           :to="item.path"
           @click="mobileOpen = false"
           :class="[
-            'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 group',
+            'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 group',
             isActive(item.path)
-              ? 'bg-champagne/20 text-champagne'
-              : 'text-white/60 hover:text-white hover:bg-white/5'
+              ? 'bg-champagne/10 text-champagne-dark font-medium shadow-sm'
+              : 'text-graphite-soft hover:text-graphite hover:bg-gray-50'
           ]"
         >
-          <span class="text-lg shrink-0 w-6 text-center" v-html="item.icon" />
+          <span
+            class="text-lg shrink-0 w-6 text-center transition-colors"
+            :class="isActive(item.path) ? 'text-champagne' : 'text-muted group-hover:text-champagne'"
+            v-html="item.icon"
+          />
           <transition name="fade">
             <span v-if="!collapsed" class="whitespace-nowrap">{{ item.label }}</span>
           </transition>
@@ -54,10 +60,10 @@
       </nav>
 
       <!-- Collapse toggle -->
-      <div class="hidden lg:block p-3 border-t border-white/10">
+      <div class="hidden lg:block p-3 border-t border-crm-border">
         <button
           @click="collapsed = !collapsed"
-          class="w-full flex items-center justify-center p-2 rounded-lg text-white/40 hover:text-white hover:bg-white/5 transition-colors"
+          class="w-full flex items-center justify-center p-2 rounded-lg text-muted hover:text-graphite hover:bg-gray-50 transition-colors"
         >
           <svg
             :class="['w-5 h-5 transition-transform duration-300', collapsed ? 'rotate-180' : '']"
@@ -73,17 +79,17 @@
     <div
       v-if="mobileOpen"
       @click="mobileOpen = false"
-      class="fixed inset-0 bg-graphite/50 z-20 lg:hidden"
+      class="fixed inset-0 bg-graphite/20 backdrop-blur-sm z-20 lg:hidden"
     />
 
     <!-- Main content -->
-    <div class="flex-1 flex flex-col min-h-screen">
+    <div class="flex-1 flex flex-col min-h-screen bg-beige/40">
       <!-- Header -->
       <header class="h-16 bg-white border-b border-crm-border flex items-center px-4 lg:px-6 gap-4 shrink-0">
         <!-- Mobile hamburger -->
         <button
           @click="mobileOpen = !mobileOpen"
-          class="lg:hidden p-2 -ml-2 rounded-lg hover:bg-beige transition-colors"
+          class="lg:hidden p-2 -ml-2 rounded-lg hover:bg-gray-50 transition-colors"
         >
           <svg class="w-5 h-5 text-graphite" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -96,7 +102,7 @@
         <div class="flex-1" />
 
         <!-- Quick search -->
-        <div class="hidden md:flex items-center bg-beige rounded-lg px-3 py-2 gap-2 w-64">
+        <div class="hidden md:flex items-center bg-beige/60 rounded-xl px-3 py-2 gap-2 w-64 border border-crm-border/50">
           <svg class="w-4 h-4 text-muted shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
@@ -108,7 +114,7 @@
         </div>
 
         <!-- Notifications -->
-        <button class="relative p-2 rounded-lg hover:bg-beige transition-colors">
+        <button class="relative p-2 rounded-lg hover:bg-gray-50 transition-colors">
           <svg class="w-5 h-5 text-graphite-soft" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
           </svg>
@@ -128,7 +134,7 @@
           </div>
           <button
             @click="authStore.logout(); $router.push('/login')"
-            class="w-9 h-9 rounded-full bg-champagne/20 flex items-center justify-center text-champagne-dark font-semibold text-xs hover:bg-champagne/30 transition-colors"
+            class="w-9 h-9 rounded-full bg-champagne/10 border border-champagne/20 flex items-center justify-center text-champagne-dark font-semibold text-xs hover:bg-champagne/20 transition-colors"
             :title="'Выйти из ' + authStore.userName"
           >
             {{ authStore.userAvatar }}
@@ -157,7 +163,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import { useTasksStore } from '../stores/tasks'
@@ -186,7 +192,7 @@ const currentRole = computed(() => {
 const pageTitle = computed(() => {
   const titles = {
     Dashboard: 'Дашборд',
-    Clients: 'Клиенты',
+    Clients: 'Каталог клиентов',
     ClientDetail: 'Карточка клиента',
     Deals: 'Воронка сделок',
     Tasks: 'Задачи',
@@ -202,8 +208,8 @@ const navItems = computed(() => [
   },
   {
     path: '/clients',
-    label: 'Клиенты',
-    icon: '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
+    label: 'Каталог',
+    icon: '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>',
   },
   {
     path: '/deals',
@@ -222,4 +228,23 @@ function isActive(path) {
   if (path === '/') return route.path === '/'
   return route.path.startsWith(path)
 }
+
+// Отслеживание активности для auto-logout
+const activityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart']
+
+function handleActivity() {
+  authStore.resetInactivityTimer()
+}
+
+onMounted(() => {
+  activityEvents.forEach(event => {
+    window.addEventListener(event, handleActivity)
+  })
+})
+
+onUnmounted(() => {
+  activityEvents.forEach(event => {
+    window.removeEventListener(event, handleActivity)
+  })
+})
 </script>
