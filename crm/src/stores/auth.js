@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import usersData from '../data/users.json'
+import { initEncryption, clearMasterKey } from '../utils/crypto'
 
 // Константы для auto-logout
 const INACTIVITY_TIMEOUT = 30 * 60 * 1000 // 30 минут в мс
@@ -22,6 +23,8 @@ export const useAuthStore = defineStore('auth', () => {
       currentUser.value = user
       localStorage.setItem('crm_user', JSON.stringify(user))
       startInactivityTimer()
+      // Инициализируем шифрование для сессии (152-ФЗ compliant)
+      initEncryption()
     }
   }
 
@@ -29,6 +32,8 @@ export const useAuthStore = defineStore('auth', () => {
     currentUser.value = null
     localStorage.removeItem('crm_user')
     stopInactivityTimer()
+    // Очищаем мастер-ключ шифрования (152-ФЗ compliant)
+    clearMasterKey()
   }
 
   // Auto-logout при неактивности
