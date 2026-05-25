@@ -30,13 +30,15 @@
 | Пункт | Статус | Комментарий |
 |-------|--------|------------|
 | [x] Данные хранятся на серверах РФ | | Amvera (план) |
-| [ ] Обезличивание реализовано | | `crm/src/utils/anonymizer.js` |
+| [x] Обезличивание реализовано | | `crm/src/utils/anonymizer.js` |
+| [x] Шифрование AES-256 реализовано | | `crm/src/utils/crypto.js` |
 | [x] .gitignore защищает ПД | | `crm/.gitignore` |
 | [ ] Бэкапы зашифрованы | | TODO: Phase 4 |
 | [ ] Логирование доступа | | TODO: Phase 4 |
 
 **Файлы:**
 - `crm/src/utils/anonymizer.js` - утилита маскировки
+- `crm/src/utils/crypto.js` - AES-256 шифрование (Web Crypto API)
 - `crm/.gitignore` - защита от коммита ПД
 
 ---
