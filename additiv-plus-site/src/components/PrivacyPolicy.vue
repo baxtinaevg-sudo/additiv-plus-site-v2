@@ -48,13 +48,22 @@
           <section>
             <h2 class="font-display text-2xl font-medium text-graphite mb-4">3. Какие данные мы собираем</h2>
             <p class="text-muted font-body leading-relaxed mb-4">
-              3.1. Мы собираем следующие персональные данные:
+              3.1. На сайте мы собираем следующие персональные данные:
             </p>
             <ul class="list-disc list-inside text-muted font-body space-y-2 ml-4">
               <li>Фамилия, имя, отчество</li>
               <li>Контактный телефон</li>
               <li>Адрес электронной почты</li>
               <li>Название компании (для обратной связи)</li>
+            </ul>
+            <p class="text-muted font-body leading-relaxed mt-4 mb-4">
+              3.2. В CRM-системе (для зарегистрированных партнёров) могут храниться:
+            </p>
+            <ul class="list-disc list-inside text-muted font-body space-y-2 ml-4">
+              <li>Реквизиты компании (ИНН, Юр. адрес)</li>
+              <li>История заказов и сделок</li>
+              <li>Документы и договоры</li>
+              <li>Заявки в лабораторию и результаты тестов</li>
             </ul>
           </section>
 
@@ -72,25 +81,41 @@
           </section>
 
           <section>
-            <h2 class="font-display text-2xl font-medium text-graphite mb-4">5. Срок хранения данных</h2>
-            <p class="text-muted font-body leading-relaxed">
-              5.1. Персональные данные хранятся до достижения цели обработки, если иной срок не установлен законом. После достижения цели данные уничтожаются или анонимизируются.
+            <h2 class="font-display text-2xl font-medium text-graphite mb-4">5. Хранение и защита данных</h2>
+            <p class="text-muted font-body leading-relaxed mb-4">
+              5.1. Персональные данные хранятся на серверах, расположенных в Российской Федерации, в соответствии с требованиями 152-ФЗ.
+            </p>
+            <p class="text-muted font-body leading-relaxed mb-4">
+              5.2. Срок хранения данных:
+            </p>
+            <ul class="list-disc list-inside text-muted font-body space-y-2 ml-4">
+              <li>Заявки с сайта - 3 года</li>
+              <li>Данные клиентов CRM - 5 лет после последнего заказа</li>
+              <li>Документы и договоры - 5 лет после окончания срока действия</li>
+            </ul>
+            <p class="text-muted font-body leading-relaxed mt-4">
+              5.3. После достижения цели обработки данные уничтожаются или обезличиваются.
             </p>
           </section>
 
           <section>
-            <h2 class="font-display text-2xl font-medium text-graphite mb-4">6. Права пользователя</h2>
+            <h2 class="font-display text-2xl font-medium text-graphite mb-4">6. Права пользователя (152-ФЗ)</h2>
             <p class="text-muted font-body leading-relaxed mb-4">
-              6.1. Пользователь имеет право:
+              6.1. В соответствии со ст. 152-ФЗ, пользователь имеет право:
             </p>
             <ul class="list-disc list-inside text-muted font-body space-y-2 ml-4">
-              <li>Получить информацию об обработке своих данных</li>
+              <li>Получить информацию об обработке своих данных (бесплатно)</li>
               <li>Требовать уточнения или удаления данных</li>
               <li>Отозвать согласие на обработку данных</li>
+              <li>Получить копию своих персональных данных</li>
+              <li>Возразить против обработки данных</li>
               <li>Подать жалобу в Роскомнадзор</li>
             </ul>
             <p class="text-muted font-body leading-relaxed mt-4">
               6.2. Для реализации прав направьте письмо на email: info@additivplus.ru
+            </p>
+            <p class="text-muted font-body leading-relaxed">
+              6.3. Ответ будет предоставлен в течение 10 рабочих дней.
             </p>
           </section>
 

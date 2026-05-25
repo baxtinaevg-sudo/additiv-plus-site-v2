@@ -41,6 +41,11 @@
       <p class="text-center text-xs text-muted mt-6">
         MVP-версия. Выбор пользователя без пароля.
       </p>
+
+      <!-- Consent Form -->
+      <div class="mt-6 p-4 bg-champagne/5 rounded-xl border border-champagne/10">
+        <ConsentForm @consent-given="handleConsent" />
+      </div>
     </div>
   </div>
 </template>
@@ -49,6 +54,7 @@
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import { storeToRefs } from 'pinia'
+import ConsentForm from '../components/ConsentForm.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -64,5 +70,9 @@ const roleLabels = {
 function login(userId) {
   authStore.login(userId)
   router.push('/')
+}
+
+function handleConsent(data) {
+  console.log('Согласие на обработку ПД получено:', data.date)
 }
 </script>
