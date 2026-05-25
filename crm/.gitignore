@@ -15,6 +15,9 @@ src/data/*.json
 # Exception: anonymized demo data is safe for git
 !src/data/*.demo.json
 
+# Backups — contains copies of sensitive data
+backups/
+
 # OS
 .DS_Store
 Thumbs.db
