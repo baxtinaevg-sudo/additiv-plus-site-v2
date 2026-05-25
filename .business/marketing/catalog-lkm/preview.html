@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ассортимент ЛКМ 2026 — Аддитив Плюс</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg: #F4F6F9;
+            --surface: #FFFFFF;
+            --text: #1B2A3D;
+            --text-sec: #5A6B7D;
+            --text-muted: #8C99A8;
+            --accent: #6C3FCD;
+            --accent-light: #F0EAF8;
+            --accent-mid: #B8A0E3;
+            --border: #D1D9E0;
+            --border-light: #E8ECF0;
+            --danger: #8A4B2E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            font-size: 14px;
+        }
+
+        /* ─── COVER ─── */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, #1A1917 0%, #2A2520 30%, #3A3025 55%, #2C2235 80%, #1A1917 100%);
+            position: relative;
+            padding: 4rem 2rem;
+            overflow: hidden;
+        }
+
+        .cover-decoration {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .cover-inner {
+            max-width: 560px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-logo {
+            margin-bottom: 3rem;
+        }
+
+        .cover-logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 12px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
+        .cover-logo-sub {
+            font-size: 0.6rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            margin-top: 0.3rem;
+        }
+
+        .cover-tagline {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 2rem;
+        }
+
+        .cover-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            margin-bottom: 3rem;
+        }
+
+        .cover-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-bottom: 0.2rem;
+        }
+
+        .cover-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.6rem;
+            font-weight: 400;
+            letter-spacing: 14px;
+            color: var(--accent-mid);
+            margin-bottom: 2.5rem;
+        }
+
+        .cover-subtitle {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 3.5rem;
+        }
+
+        .cover-meta {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
+            line-height: 2;
+        }
+
+        .cover-meta strong {
+            color: rgba(255,255,255,0.85);
+            font-weight: 600;
+        }
+
+        .cover-meta a {
+            color: var(--accent-mid);
+            text-decoration: none;
+        }
+
+        /* ─── CATALOG SECTION ─── */
+        .catalog-section {
+            background: var(--surface);
+            padding: 2.5rem 2.5rem 2rem;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        .section-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 0.5px;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ─── BRAND SUB-HEADERS ─── */
+        .brand-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        /* ─── TABLES ─── */
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-table th {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            padding: 0 0.5rem 0.6rem;
+            border-bottom: 2px solid var(--accent);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .product-table th:first-child { text-align: left; }
+
+        .product-table td {
+            padding: 0.7rem 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--text-sec);
+            vertical-align: top;
+        }
+
+        .product-table tr:last-child td { border-bottom: none; }
+
+        .p-name {
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+        }
+
+        .p-desc {
+            color: var(--text-sec);
+            font-size: 0.8rem;
+        }
+
+        .p-apply {
+            color: var(--text);
+            font-size: 0.8rem;
+        }
+
+        /* ─── SECTION FOOTER ─── */
+        .section-footer {
+            margin-top: 2rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .section-footer span {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .disclaimer {
+            font-style: italic;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+        }
+
+        /* ─── BACK PAGE ─── */
+        .back-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, #1A1917 0%, #2C2235 40%, #1A1917 100%);
+            color: #D4C4A8;
+            padding: 4rem 2rem;
+        }
+
+        .back-inner {
+            max-width: 460px;
+            text-align: center;
+        }
+
+        .back-company {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-bottom: 2rem;
+        }
+
+        .back-line {
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin: 0 auto 2rem;
+        }
+
+        .back-details {
+            font-size: 0.82rem;
+            line-height: 2;
+        }
+
+        .back-details strong {
+            color: var(--accent-mid);
+            font-weight: 500;
+        }
+
+        .back-qr {
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .back-qr-text {
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .back-disclaimer {
+            font-size: 0.65rem;
+            margin-top: 2rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ─── PRINT ─── */
+        @page { size: A4; margin: 18mm 20mm; }
+
+        @media print {
+            body { background: white; }
+            .cover { min-height: auto; height: 100vh; page-break-after: always; }
+            .catalog-section { page-break-before: always; padding: 0; max-width: none; }
+            .product-table tr { page-break-inside: avoid; }
+            .back-page { min-height: auto; height: 100vh; page-break-before: always; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .cover-title, .cover-year { font-size: 1.8rem; }
+            .section-header { gap: 0.75rem; }
+            .section-title { font-size: 1.1rem; }
+            .product-table td, .product-table th { font-size: 0.72rem; padding: 0.4rem; }
+            .p-name { white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════ ОБЛОЖКА ════════════════════════ -->
+<div class="cover">
+    <!-- ═══ Декоративная графика: колбы, молекулы, пузырьки ═══ -->
+    <div class="cover-decoration">
+        <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Колба Эрленмейера — левый нижний угол -->
+            <g opacity="0.07" transform="translate(60, 420) scale(0.9)">
+                <path d="M60 10 L60 120 L20 220 Q15 235 30 240 L150 240 Q165 235 160 220 L120 120 L120 10" stroke="#D4C4A8" stroke-width="2" fill="none"/>
+                <line x1="45" y1="10" x2="135" y2="10" stroke="#D4C4A8" stroke-width="2"/>
+                <path d="M35 200 Q90 185 145 200 L150 240 L30 240 Z" fill="#6B46C1" opacity="0.3"/>
+                <!-- Пузырьки в колбе -->
+                <circle cx="70" cy="215" r="3" fill="#D4C4A8" opacity="0.4"/>
+                <circle cx="100" cy="210" r="2" fill="#D4C4A8" opacity="0.3"/>
+                <circle cx="85" cy="220" r="4" fill="#D4C4A8" opacity="0.2"/>
+            </g>
+
+            <!-- Пробирка — правый верхний угол -->
+            <g opacity="0.06" transform="translate(980, 60) rotate(15)">
+                <rect x="0" y="0" width="28" height="160" rx="0" stroke="#D4C4A8" stroke-width="2" fill="none"/>
+                <rect x="-5" y="-5" width="38" height="12" rx="2" stroke="#D4C4A8" stroke-width="1.5" fill="none"/>
+                <path d="M0 140 Q14 165 28 140 L28 160 Q14 180 0 160 Z" fill="#6B46C1" opacity="0.25" stroke="#D4C4A8" stroke-width="2"/>
+                <circle cx="10" cy="145" r="2" fill="#D4C4A8" opacity="0.4"/>
+                <circle cx="18" cy="150" r="3" fill="#D4C4A8" opacity="0.3"/>
+            </g>
+
+            <!-- Колба круглодонная — правый нижний -->
+            <g opacity="0.05" transform="translate(950, 480) scale(0.8)">
+                <path d="M50 0 L50 80 M50 80 Q-10 120 0 170 Q10 220 50 230 Q90 220 100 170 Q110 120 50 80" stroke="#D4C4A8" stroke-width="2" fill="none"/>
+                <ellipse cx="50" cy="180" rx="40" ry="35" fill="#6B46C1" opacity="0.2"/>
+                <circle cx="40" cy="190" r="3" fill="#D4C4A8" opacity="0.3"/>
+                <circle cx="60" cy="185" r="2" fill="#D4C4A8" opacity="0.4"/>
+            </g>
+
+            <!-- Молекула 1 — левый верхний -->
+            <g opacity="0.08" transform="translate(80, 60)">
+                <circle cx="40" cy="40" r="12" stroke="#9B75DB" stroke-width="1.5" fill="#6B46C1" fill-opacity="0.15"/>
+                <circle cx="100" cy="25" r="8" stroke="#9B75DB" stroke-width="1.5" fill="#6B46C1" fill-opacity="0.1"/>
+                <circle cx="90" cy="80" r="10" stroke="#9B75DB" stroke-width="1.5" fill="#6B46C1" fill-opacity="0.12"/>
+                <line x1="50" y1="35" x2="93" y2="28" stroke="#9B75DB" stroke-width="1.2"/>
+                <line x1="48" y1="48" x2="83" y2="73" stroke="#9B75DB" stroke-width="1.2"/>
+                <line x1="105" y1="32" x2="95" y2="72" stroke="#9B75DB" stroke-width="1"/>
+            </g>
+
+            <!-- Молекула 2 — правый центр -->
+            <g opacity="0.06" transform="translate(1020, 300)">
+                <circle cx="30" cy="30" r="9" stroke="#D4C4A8" stroke-width="1.5" fill="#6B46C1" fill-opacity="0.1"/>
+                <circle cx="80" cy="20" r="7" stroke="#D4C4A8" stroke-width="1.5" fill="#6B46C1" fill-opacity="0.08"/>
+                <circle cx="75" cy="70" r="11" stroke="#D4C4A8" stroke-width="1.5" fill="#6B46C1" fill-opacity="0.12"/>
+                <circle cx="20" cy="75" r="6" stroke="#D4C4A8" stroke-width="1.5" fill="#6B46C1" fill-opacity="0.08"/>
+                <line x1="38" y1="25" x2="74" y2="23" stroke="#D4C4A8" stroke-width="1"/>
+                <line x1="36" y1="37" x2="68" y2="63" stroke="#D4C4A8" stroke-width="1"/>
+                <line x1="25" y1="38" x2="22" y2="69" stroke="#D4C4A8" stroke-width="1"/>
+                <line x1="76" y1="27" x2="76" y2="59" stroke="#D4C4A8" stroke-width="1"/>
+            </g>
+
+            <!-- Молекула 3 — центр-лево (бензольное кольцо) -->
+            <g opacity="0.05" transform="translate(180, 350)">
+                <polygon points="50,10 85,30 85,70 50,90 15,70 15,30" stroke="#9B75DB" stroke-width="1.2" fill="none"/>
+                <polygon points="50,25 73,37 73,63 50,75 27,63 27,37" stroke="#9B75DB" stroke-width="0.8" fill="none" stroke-dasharray="4,4"/>
+                <circle cx="50" cy="10" r="4" fill="#9B75DB" opacity="0.3"/>
+                <circle cx="85" cy="30" r="4" fill="#9B75DB" opacity="0.3"/>
+                <circle cx="85" cy="70" r="4" fill="#9B75DB" opacity="0.3"/>
+                <circle cx="50" cy="90" r="4" fill="#9B75DB" opacity="0.3"/>
+                <circle cx="15" cy="70" r="4" fill="#9B75DB" opacity="0.3"/>
+                <circle cx="15" cy="30" r="4" fill="#9B75DB" opacity="0.3"/>
+            </g>
+
+            <!-- Декоративные пузырьки / капли — разбросаны -->
+            <circle cx="200" cy="200" r="20" fill="#6B46C1" opacity="0.03"/>
+            <circle cx="350" cy="650" r="35" fill="#9B75DB" opacity="0.025"/>
+            <circle cx="900" cy="150" r="25" fill="#D4C4A8" opacity="0.03"/>
+            <circle cx="1100" cy="600" r="40" fill="#6B46C1" opacity="0.02"/>
+            <circle cx="150" cy="550" r="15" fill="#D4C4A8" opacity="0.04"/>
+            <circle cx="700" cy="100" r="18" fill="#9B75DB" opacity="0.03"/>
+            <circle cx="500" cy="700" r="28" fill="#6B46C1" opacity="0.02"/>
+            <circle cx="1050" cy="450" r="12" fill="#D4C4A8" opacity="0.04"/>
+            <circle cx="300" cy="100" r="8" fill="#D4C4A8" opacity="0.05"/>
+            <circle cx="800" cy="680" r="22" fill="#9B75DB" opacity="0.025"/>
+
+            <!-- Капля ЛКМ — стилизованная -->
+            <g opacity="0.06" transform="translate(400, 50)">
+                <path d="M20 0 Q25 15 35 30 Q45 50 20 60 Q-5 50 5 30 Q15 15 20 0Z" fill="#6B46C1" opacity="0.4" stroke="#D4C4A8" stroke-width="1"/>
+            </g>
+
+            <!-- Капля ЛКМ — правая сторона -->
+            <g opacity="0.05" transform="translate(1080, 250) scale(1.2)">
+                <path d="M20 0 Q25 15 35 30 Q45 50 20 60 Q-5 50 5 30 Q15 15 20 0Z" fill="#9B75DB" opacity="0.4" stroke="#D4C4A8" stroke-width="1"/>
+            </g>
+        </svg>
+    </div>
+
+    <div class="cover-inner">
+        <div class="cover-logo">
+            <div class="cover-logo-text">MAPF</div>
+            <div class="cover-logo-sub">Minus Aqua Plus Firmitas</div>
+        </div>
+        <div class="cover-line"></div>
+        <div class="cover-title">Ассортимент</div>
+        <div class="cover-year">2026</div>
+        <div class="cover-subtitle">Добавки для производства лакокрасочных материалов</div>
+        <div class="cover-meta">
+            <strong>ООО «АДДИТИВ ПЛЮС»</strong><br>
+            117405, Москва, ул. Дорожная, д. 60А, стр. 1<br>
+            Тел. +7 903 132-09-20 &nbsp;·&nbsp; info@additivplus.ru<br>
+            <a href="https://additivplus.ru">additivplus.ru</a>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════ 01 · ЗАГУСТИТЕЛИ ЦЕЛЛЮЛОЗНЫЕ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <path d="M20 4L34 12M20 4L6 12M20 36V28M20 36L6 28M34 12V28M6 12V28" stroke="#6C3FCD" stroke-width="1" opacity="0.4"/>
+            <circle cx="20" cy="20" r="4" fill="#6C3FCD" opacity="0.3"/>
+        </svg></span>
+        <h2 class="section-title">Загустители целлюлозные</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">MAPF HEC</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF® HEC 30000 PB</td>
+                <td class="p-desc">Эфир целлюлозы (ГЭЦ). Премиальная средневязкая марка. Обеспечивает стабильную вязкость, содержит биоциды, предотвращает разбрызгивание</td>
+                <td class="p-apply">Для водных ЛКМ</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF® HEC 100000 PB</td>
+                <td class="p-desc">Эфир целлюлозы (ГЭЦ). Премиальная базовая марка высокой вязкости, содержит биоциды, предотвращает разбрызгивание</td>
+                <td class="p-apply">Для водных ЛКМ</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF® HEC 100000</td>
+                <td class="p-desc">Эфир целлюлозы (ГЭЦ). Базовая марка высокой вязкости</td>
+                <td class="p-apply">Для водных ЛКМ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 02 · ЗАГУСТИТЕЛИ АССОЦИАТИВНЫЕ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 20 Q13 10 20 20 Q27 30 34 20" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="6" cy="20" r="2" fill="#6C3FCD" opacity="0.5"/>
+            <circle cx="20" cy="20" r="2" fill="#6C3FCD" opacity="0.5"/>
+            <circle cx="34" cy="20" r="2" fill="#6C3FCD" opacity="0.5"/>
+        </svg></span>
+        <h2 class="section-title">Загустители ассоциативные</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">TRM · Полиуретановые (HEUR)</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">TRM-2020</td>
+                <td class="p-desc" rowspan="4">Загустители полиуретановые (HEUR)</td>
+                <td class="p-apply" rowspan="4">Для водных ЛКМ</td>
+            </tr>
+            <tr><td class="p-name">TRM-112</td></tr>
+            <tr><td class="p-name">TRM-105</td></tr>
+            <tr><td class="p-name">TRM-103S</td></tr>
+        </tbody>
+    </table>
+
+    <div class="brand-label">TRM · Акриловые (HASE)</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">TRM-203</td>
+                <td class="p-desc" rowspan="3">Загустители акриловые (HASE)</td>
+                <td class="p-apply" rowspan="3">Для водных ЛКМ</td>
+            </tr>
+            <tr><td class="p-name">TRM-206</td></tr>
+            <tr><td class="p-name">TRM-207</td></tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 03 · ДИСПЕРГАТОРЫ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="28" cy="12" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="12" cy="28" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="28" cy="28" r="3" fill="#6C3FCD" opacity="0.4"/>
+            <circle cx="20" cy="20" r="3" fill="#6C3FCD" opacity="0.6"/>
+            <line x1="20" y1="20" x2="12" y2="12" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+            <line x1="20" y1="20" x2="28" y2="12" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+            <line x1="20" y1="20" x2="12" y2="28" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+            <line x1="20" y1="20" x2="28" y2="28" stroke="#6C3FCD" stroke-width="0.8" opacity="0.3"/>
+        </svg></span>
+        <h2 class="section-title">Диспергаторы</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">Полиакрилат натрия 45%</td>
+                <td class="p-desc">Высокоэффективный жидкий диспергирующий агент для производства широкого спектра водорастворимых лакокрасочных материалов, включая производство матовых, глянцевых красок на основе акриловых и стирол-акриловых дисперсий</td>
+                <td class="p-apply">Для водных ЛКМ</td>
+            </tr>
+            <tr>
+                <td class="p-name">CARMOT DS-2130</td>
+                <td class="p-desc">Диспергатор для органических и неорганических пигментов, сажи. Рекомендуется для красок и пигментных концентратов, можно применять как содиспергатор для совмещения концентратов с базой</td>
+                <td class="p-apply">Архитектурные, по дереву, индустриальные, напольные покрытия, печатные краски</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 04 · ПЕНОГАСИТЕЛИ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="18" r="8" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <line x1="14" y1="24" x2="26" y2="12" stroke="#6C3FCD" stroke-width="1.5"/>
+        </svg></span>
+        <h2 class="section-title">Пеногасители</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">F-1301</td>
+                <td class="p-desc">Сополимер полиэфир-силоксана, содержит пирогенный диоксид кремния. Чрезвычайно стабильный пеногаситель с отличным немедленным пеногашением и длительным пеноподавлением. Работает при низкой дозировке</td>
+                <td class="p-apply">Покрытия по древесине, промышленные, автомобильные ЛКМ, архитектурные, напольные покрытия, трафаретная печать</td>
+            </tr>
+            <tr>
+                <td class="p-name">F-1303</td>
+                <td class="p-desc">Модифицированный полисилоксан. Предотвращает пенообразование при измельчении с долгосрочной стабильностью. Для составов без смол</td>
+                <td class="p-apply">Пигментные концентраты на водной и гликолевой основе, универсальные красители, лаки для печати, печатные краски</td>
+            </tr>
+            <tr>
+                <td class="p-name">F-1304</td>
+                <td class="p-desc">Смесь полисилоксанов и гидрофобных твёрдых веществ в полигликоле. Без ЛОС. Для высокоглянцевых и полуглянцевых систем безвоздушного нанесения</td>
+                <td class="p-apply">Водные высокоглянцевые эмульсионные системы, дисперсионные клеи, печатные краски, лаки для печати</td>
+            </tr>
+            <tr>
+                <td class="p-name">F-1306</td>
+                <td class="p-desc">Полисилоксан. Силиконовый пеногаситель без ЛОС</td>
+                <td class="p-apply">Покрытия на водной основе, печатные краски, прозрачные лаки, латексные клеи</td>
+            </tr>
+            <tr>
+                <td class="p-name">F-1308</td>
+                <td class="p-desc">Раствор полисилоксана и гидрофобных частиц. Стандартная добавка без ЛОС. Предотвращает микропену при производстве, колеровке и нанесении</td>
+                <td class="p-apply">Водоэмульсионные краски и клеи</td>
+            </tr>
+            <tr>
+                <td class="p-name">F-8982</td>
+                <td class="p-desc">Эмульсия полиэфирсилоксанового сополимера, содержит пирогенный диоксид кремния. Разумное соотношение эффективности и совместимости</td>
+                <td class="p-apply">Водные ЛКМ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 05 · ДОБАВКИ ДЛЯ ВЫРАВНИВАНИЯ ПОВЕРХНОСТИ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="10" width="28" height="20" rx="2" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <path d="M6 20L12 16L18 22L26 14L34 18" stroke="#6C3FCD" stroke-width="1.2" fill="none"/>
+        </svg></span>
+        <h2 class="section-title">Добавки для выравнивания поверхности</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">CL-9</td>
+                <td class="p-desc">Силиконовая добавка премиум класса. Выравнивает и придаёт гладкость, повышает устойчивость к царапинам, препятствует слипанию, предотвращает кратеры</td>
+                <td class="p-apply">Водные системы и системы на органических растворителях. Высокоглянцевые и прозрачные системы</td>
+            </tr>
+            <tr>
+                <td class="p-name">CL-410S</td>
+                <td class="p-desc">Кремнийорганическая добавка. Исключительное скольжение и антикратерные характеристики</td>
+                <td class="p-apply">Индустриальные покрытия, мебельные лаки, высокоглянцевые покрытия, 3D-покрытия</td>
+            </tr>
+            <tr>
+                <td class="p-name">CL-5006</td>
+                <td class="p-desc">Алкил-модифицированный полисилоксан. Пеногасящие свойства, улучшение выравнивания, увеличение скольжения, повышение устойчивости к царапинам</td>
+                <td class="p-apply">Органоразбавляемые системы</td>
+            </tr>
+            <tr>
+                <td class="p-name">CL-5009</td>
+                <td class="p-desc">Модифицированный полисилоксан. Премиальная силиконовая добавка для скольжения и гладкости. Не вызывает помутнения</td>
+                <td class="p-apply">Все виды покрытий на органике, особенно лаки по дереву. Водные индустриальные покрытия</td>
+            </tr>
+            <tr>
+                <td class="p-name">CL-8158</td>
+                <td class="p-desc">Полиакрилат. Поверхностная добавка для улучшения выравнивания. Без мутности и дымки</td>
+                <td class="p-apply">Покрытия на растворителе и без, термореактивные системы. Полярные и среднеполярные системы</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 06 · СИЛИКОНОВЫЕ ДОБАВКИ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6V34" stroke="#6C3FCD" stroke-width="1.5"/>
+            <path d="M10 12L20 6L30 12" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <path d="M10 28L20 34L30 28" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <circle cx="20" cy="20" r="3" fill="#6C3FCD" opacity="0.2"/>
+        </svg></span>
+        <h2 class="section-title">Силиконовые добавки</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="brand-label">SILRES</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">SILRES BS 45</td>
+                <td class="p-desc">Эмульсия силиконовой смолы. Гидрофобизирующая добавка премиум класса</td>
+                <td class="p-apply">Для водных ЛКМ</td>
+            </tr>
+            <tr>
+                <td class="p-name">SILRES BS 1306</td>
+                <td class="p-desc">Эмульсия реакционного полисилоксана. Гидрофобизирующая добавка</td>
+                <td class="p-apply">Для водных ЛКМ. Пропитка для фасадов, цементных и деревянных поверхностей</td>
+            </tr>
+            <tr>
+                <td class="p-name">SILRES BS 1360</td>
+                <td class="p-desc">Эмульсия реакционного полисилоксана. Увеличенное содержание активного компонента</td>
+                <td class="p-apply">Для водных ЛКМ, силикатных красок и высокощелочных продуктов. Пропитка для фасадов, цементных и деревянных поверхностей</td>
+            </tr>
+            <tr>
+                <td class="p-name">SILRES 1001</td>
+                <td class="p-desc">Эмульсия силан/силоксана. Наибольшая глубина проникновения</td>
+                <td class="p-apply">Гидрофобизирующая пропитка для фасадов, цементных и деревянных поверхностей</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="brand-label">MAPF SIL</div>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF® SIL 94</td>
+                <td class="p-desc">Полиметилгидридсилоксан</td>
+                <td class="p-apply">Гидрофобизирующая добавка для пазогребневых плит. Пропитка для известковых и гипсовых поверхностей</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 07 · РЕГУЛЯТОР pH ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="14" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <text x="20" y="24" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#6C3FCD">pH</text>
+        </svg></span>
+        <h2 class="section-title">Регулятор pH</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">MAPF® SIL PH</td>
+                <td class="p-desc">Водный подщелачиватель на кремнийорганической основе, без растворителей, без запаха</td>
+                <td class="p-apply">Для водных ЛКМ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ 08 · ДОБАВКИ ДЛЯ КЛЕЕВ И ГЕРМЕТИКОВ ════════════════════════ -->
+<section class="catalog-section">
+    <div class="section-header">
+        <span class="section-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="8" width="24" height="24" rx="3" stroke="#6C3FCD" stroke-width="1.5" fill="none"/>
+            <path d="M14 20H26" stroke="#6C3FCD" stroke-width="1.5"/>
+            <path d="M20 14V26" stroke="#6C3FCD" stroke-width="1.5"/>
+        </svg></span>
+        <h2 class="section-title">Добавки для клеёв и герметиков</h2>
+    </div>
+    <div class="section-divider"></div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Характеристика</th>
+                <th>Рекомендации</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-name">LT-171</td>
+                <td class="p-desc">Винилтриметоксисилан. Влагопоглотитель для клеёв и герметиков. Промотор адгезии и сшивающий агент для полимерных композиций</td>
+                <td class="p-apply">Клеи и герметики</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF® MS 15</td>
+                <td class="p-desc">Полиэфир с метоксисилановыми концевыми группами. Вязкость 7 000–15 000 мПа·с</td>
+                <td class="p-apply">Базовый полимер для паркетных клеёв, эластичных и структурных герметиков, адгезивов, заливочных компаундов и покрытий</td>
+            </tr>
+            <tr>
+                <td class="p-name">MAPF® MS 35</td>
+                <td class="p-desc">Полиэфир с триметоксисилановыми концевыми группами. Вязкость 30 000–50 000 мПа·с</td>
+                <td class="p-apply">Базовый полимер для эластичных и структурных герметиков, адгезивов, заливочных компаундов и покрытий</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-footer">
+        <span>ООО «АДДИТИВ ПЛЮС» · ИНН 5036165686</span>
+        <span>additivplus.ru</span>
+    </div>
+    <p class="disclaimer">Настоящее предложение не является офертой.</p>
+</section>
+
+<!-- ════════════════════════ ЗАДНЯЯ ОБЛОЖКА ════════════════════════ -->
+<div class="back-page">
+    <div class="back-inner">
+        <div class="back-company">ООО «АДДИТИВ ПЛЮС»</div>
+        <div class="back-line"></div>
+        <div class="back-details">
+            <strong>ИНН</strong> 5036165686 &nbsp;·&nbsp; <strong>ОГРН</strong> 1175074003367<br>
+            117405, Москва, ул. Дорожная, д. 60А, стр. 1<br>
+            Тел. +7 903 132-09-20<br>
+            <strong>E-mail</strong> info@additivplus.ru<br>
+            <strong>Web</strong> additivplus.ru
+        </div>
+        <div class="back-qr">
+            <div class="back-qr-text">QR-код для сайта</div>
+        </div>
+        <p class="back-disclaimer">Настоящее предложение не является офертой. Все характеристики указаны на основании каталога «Ассортимент ЛКМ 2026» ООО «АДДИТИВ ПЛЮС».</p>
+    </div>
+</div>
+
+</body>
+</html>
