@@ -1,22 +1,30 @@
 <template>
-  <div class="min-h-screen bg-beige flex items-center justify-center p-4">
+  <div class="min-h-screen bg-white flex items-center justify-center p-4">
     <div class="w-full max-w-md">
+      <!-- Logo and branding -->
       <div class="text-center mb-10">
-        <h1 class="font-display text-4xl text-graphite mb-2">Аддитив Плюс</h1>
-        <p class="text-muted text-sm">CRM-система</p>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-champagne/5 border border-champagne/10 mb-4">
+          <img
+            src="/logo.png"
+            alt="Аддитив Плюс"
+            class="w-14 h-14 object-contain"
+          />
+        </div>
+        <h1 class="font-display text-3xl text-graphite mb-1">Аддитив Плюс</h1>
+        <p class="text-champagne-dark text-sm font-medium tracking-wide">CRM-каталог</p>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-sm border border-crm-border p-8">
-        <h2 class="font-display text-2xl text-graphite mb-6 text-center">Выберите пользователя</h2>
+      <div class="bg-beige/40 rounded-2xl border border-crm-border p-8">
+        <h2 class="font-display text-xl text-graphite mb-6 text-center">Выберите пользователя</h2>
 
         <div class="space-y-3">
           <button
             v-for="user in users"
             :key="user.id"
             @click="login(user.id)"
-            class="w-full flex items-center gap-4 p-4 rounded-xl border border-crm-border hover:border-champagne hover:bg-champagne-light/20 transition-all duration-200 group"
+            class="w-full flex items-center gap-4 p-4 rounded-xl bg-white border border-crm-border hover:border-champagne/40 hover:shadow-sm transition-all duration-200 group"
           >
-            <div class="w-11 h-11 rounded-full bg-champagne/20 flex items-center justify-center text-champagne-dark font-semibold text-sm group-hover:bg-champagne/30">
+            <div class="w-11 h-11 rounded-full bg-champagne/10 border border-champagne/10 flex items-center justify-center text-champagne-dark font-semibold text-sm group-hover:bg-champagne/20">
               {{ user.avatar }}
             </div>
             <div class="text-left flex-1">

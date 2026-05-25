@@ -7,6 +7,7 @@
     font-family: 'Manrope', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #FFFFFF;
   }
 }
 
@@ -14,4 +15,34 @@
   .font-display {
     font-family: 'Playfair Display', Georgia, serif;
   }
+
+  /* Catalog-style card hover effect */
+  .catalog-card {
+    @apply bg-white rounded-xl border border-crm-border transition-all duration-300;
+  }
+  .catalog-card:hover {
+    @apply shadow-md border-champagne/20 -translate-y-0.5;
+  }
+
+  /* Subtle catalog grid pattern for backgrounds */
+  .catalog-grid-bg {
+    background-image: radial-gradient(circle, #E5E7EB 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
 }
