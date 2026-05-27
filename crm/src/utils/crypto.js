@@ -152,7 +152,7 @@ export async function decrypt(encryptedData, masterKey = null) {
   // Конвертируем hex обратно в байты
   const ciphertext = new Uint8Array(ciphertextHex.match(/.{2}/g).map(b => parseInt(b, 16)))
 
-  const decrypted = await crypto.subly.decrypt(
+  const decrypted = await crypto.subtle.decrypt(
     { name: ALGORITHM, iv: new TextEncoder().encode(iv) },
     cryptoKey,
     ciphertext

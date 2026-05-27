@@ -2,13 +2,14 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import usersData from '../data/users.json'
 import { initEncryption, clearMasterKey } from '../utils/crypto'
+import { setItem as encSetItem, getItem as encGetItem, removeItem as encRemoveItem } from '../utils/encryptedStorage'
 
 // Константы для auto-logout
 const INACTIVITY_TIMEOUT = 30 * 60 * 1000 // 30 минут в мс
 let inactivityTimer = null
 
 export const useAuthStore = defineStore('auth', () => {
-  const currentUser = ref(JSON.parse(localStorage.getItem('crm_user') || 'null'))
+  const currentUser = ref(null)
   const users = ref(usersData)
 
   const isAdmin = computed(() => currentUser.value?.role === 'admin')
@@ -17,26 +18,38 @@ export const useAuthStore = defineStore('auth', () => {
   const userName = computed(() => currentUser.value?.name || '')
   const userAvatar = computed(() => currentUser.value?.avatar || '')
 
-  function login(userId) {
+  async function login(userId) {
     const user = users.value.find(u => u.id === userId)
     if (user) {
       currentUser.value = user
-      localStorage.setItem('crm_user', JSON.stringify(user))
+      await encSetItem('crm_user', JSON.stringify(user))
       startInactivityTimer()
-      // Инициализируем шифрование для сессии (152-ФЗ compliant)
       initEncryption()
     }
   }
 
   function logout() {
     currentUser.value = null
-    localStorage.removeItem('crm_user')
+    encRemoveItem('crm_user')
     stopInactivityTimer()
-    // Очищаем мастер-ключ шифрования (152-ФЗ compliant)
     clearMasterKey()
   }
 
-  // Auto-logout при неактивности
+  async function restoreSession() {
+    const saved = await encGetItem('crm_user')
+    if (saved) {
+      try {
+        currentUser.value = JSON.parse(saved)
+        if (currentUser.value) {
+          initEncryption()
+          startInactivityTimer()
+        }
+      } catch {
+        encRemoveItem('crm_user')
+      }
+    }
+  }
+
   function startInactivityTimer() {
     stopInactivityTimer()
     inactivityTimer = setTimeout(() => {
@@ -57,10 +70,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  // Если пользователь уже вошёл при загрузке, запускаем таймер
-  if (currentUser.value) {
-    startInactivityTimer()
-  }
+  restoreSession()
 
   return {
     currentUser,

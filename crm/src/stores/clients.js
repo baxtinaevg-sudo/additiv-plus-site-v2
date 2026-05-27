@@ -3,28 +3,13 @@ import { ref, computed } from 'vue'
 import demoClientsData from '../data/clients.demo.json'
 
 export const useClientsStore = defineStore('clients', () => {
-  // Начинаем с демо-данных (всегда доступны, т.к. в git)
+  // Используем только демо-данные (всегда доступны, т.к. в git)
+  // Реальные данные должны загружаться через API, а не через JSON в исходниках
   const clients = ref([...demoClientsData])
   const isDemo = ref(true)
   const searchQuery = ref('')
   const filterDirection = ref('all')
   const filterStatus = ref('all')
-
-  // Пытаемся загрузить реальные данные (доступны только локально)
-  // @vite-ignore нужен чтобы Vite не пытался резолвить при сборке -
-  // на деплое (Vercel/Amvera) файла clients.json нет (в .gitignore)
-  async function loadRealData() {
-    try {
-      const module = await import(/* @vite-ignore */ '../data/clients.json')
-      clients.value = [...module.default]
-      isDemo.value = false
-    } catch {
-      // clients.json не найден - остаёмся в демо-режиме
-    }
-  }
-
-  // Автозагрузка реальных данных при инициализации store
-  loadRealData()
 
   const filteredClients = computed(() => {
     let result = clients.value
@@ -87,6 +72,5 @@ export const useClientsStore = defineStore('clients', () => {
     getClient,
     addClient,
     updateClient,
-    loadRealData,
   }
 })
