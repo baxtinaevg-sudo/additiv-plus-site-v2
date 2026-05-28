@@ -2,17 +2,6 @@
   <!-- Preloader -->
   <Preloader />
 
-  <!-- Custom Cursor -->
-  <div
-    class="cursor-dot"
-    :class="{ hovering: cursorHovering }"
-    :style="{ left: dotX + 'px', top: dotY + 'px' }"
-  />
-  <div
-    class="cursor-ring"
-    :class="{ hovering: cursorHovering }"
-    :style="{ left: ringX + 'px', top: ringY + 'px' }"
-  />
 
   <!-- Grain Overlay -->
   <div class="grain-overlay"></div>
@@ -35,8 +24,11 @@
     <main>
       <HeroSection />
       <MarqueeSection />
+      <UspSection />
       <ProductsSection />
       <StatsSection />
+      <TrustSection />
+      <TeamSection />
       <LabSection />
       <VideoSection />
       <FaqSection />
@@ -50,14 +42,16 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
 import { useLenis } from './composables/useLenis'
-import { useCursor } from './composables/useCursor'
 import Preloader from './components/Preloader.vue'
 import AppNav from './components/AppNav.vue'
 import AppFooter from './components/AppFooter.vue'
 import HeroSection from './components/HeroSection.vue'
 import MarqueeSection from './components/MarqueeSection.vue'
+import UspSection from './components/UspSection.vue'
 import ProductsSection from './components/ProductsSection.vue'
 import StatsSection from './components/StatsSection.vue'
+import TrustSection from './components/TrustSection.vue'
+import TeamSection from './components/TeamSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import LabSection from './components/LabSection.vue'
 import VideoSection from './components/VideoSection.vue'
@@ -82,9 +76,6 @@ onMounted(() => {
 
 // Smooth scroll
 useLenis()
-
-// Custom cursor
-const { dotX, dotY, ringX, ringY, hovering: cursorHovering } = useCursor()
 
 // Initialize scroll animations & magnetic buttons
 const initAnimations = () => {

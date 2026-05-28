@@ -25,12 +25,12 @@ function getTextPositions(text, fontSize, maxWidth, maxHeight) {
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
 
-  // Single line
+  // Single line centered
   ctx.fillText(text, maxWidth / 2, maxHeight / 2)
 
   const imageData = ctx.getImageData(0, 0, maxWidth, maxHeight)
   const positions = []
-  const step = 1 // pixel-perfect sampling for maximum clarity
+  const step = 1
 
   for (let y = 0; y < maxHeight; y += step) {
     for (let x = 0; x < maxWidth; x += step) {
@@ -67,12 +67,8 @@ onMounted(() => {
   camera.position.z = 5
   clock = new THREE.Clock()
 
-  const textPositions = getTextPositions(
-    'MINUS AQUA PLUS FIRMITAS',
-    200,
-    4096,
-    512
-  )
+  // Single line of text
+  const textPositions = getTextPositions('MINUS AQUA PLUS FIRMITAS', 160, 4096, 512)
 
   const count = textPositions.length
   console.log('Particle count:', count)
