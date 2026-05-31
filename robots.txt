@@ -1,0 +1,11 @@
+# robots.txt для Аддитив Плюс
+
+User-agent: *
+Allow: /
+
+# Закрываем юридические страницы от индексации (они по hash, не отдельные URL)
+Disallow: /#*
+Disallow: /*?*
+
+# Sitemap
+Sitemap: https://additivplus.ru/sitemap.xml
